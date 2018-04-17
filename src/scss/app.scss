@@ -1,0 +1,71 @@
+@import './styles.scss';
+
+$backgroundimg: '../images/wallpaper-1.jpg';
+
+// .divdetails{
+//   background-color: rgb(13, 33, 33);
+// }
+
+.approot {
+  text-align: center;
+  // background-color:#2980b9;
+  // background-color:white;
+  // margin : -10px;
+  *:focus {
+    outline: none;
+  }
+}
+
+.parampanel {
+  margin: 30px auto !important;
+  background-color: lighten($roya-blue, 30%);
+  -moz-background-clip: padding; /* Firefox 3.6 */
+  -webkit-background-clip: padding; /* Safari 4? Chrome 6? */
+  background-clip: padding-box; /* Firefox 4, Safari 5, Opera 10, IE 9 */
+}
+
+.blockborder {
+  background-color: lighten($roya-blue, 30%);
+  border: 3px solid rgba(white, 0.3);
+
+  @include border-radius(15px);
+}
+
+.mdl-textfield__label {
+  margin-bottom: 0px;
+  margin-top: -2px;
+  font-family: 'Roboto', Tahoma, sans-serif;
+  font-size: 1.0em !important;
+}
+
+.mdl-selectfield__label {
+  margin-bottom: 0px;
+  margin-top: -2px;
+  font-family: 'Roboto', Tahoma, sans-serif;
+  font-size: 1.0em !important;
+}
+
+.mdl-spinner__layer-1, .mdl-spinner__layer-2, .mdl-spinner__layer-3, .mdl-spinner__layer-4 {
+  border-color: darken(getMdlColor($color-primary), 20%) !important;
+}
+
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.ellipsis.multiline {
+  white-space: normal;
+}
+
+.bgo {
+  background-color: orange !important;
+}
+
+.bgp {
+  background-color: pink !important;
+}
+
+.bgr {
+  background-color: red !important;
+}

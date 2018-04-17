@@ -1,0 +1,82 @@
+@import '../../scss/styles.scss';
+
+
+
+#bsnavi {
+    // height: 565px;
+    font-size: 1.15em;
+    position: fixed;
+    z-index: 5;
+    // padding: 0;
+    // margin: -15px auto 0 auto;
+    // width:100%;
+    // box-shadow: 0 7px 15px 0 rgba(0, 0, 0, 0.2), 0 8px 15px 0 rgba(0, 0, 0, 0.1);
+    // -moz-background-clip: padding;
+    // -webkit-background-clip: padding-box;
+    // background-clip: padding-box;
+    // border: 5px solid rgba(darken($roya-blue, 9%), 0.3);
+    // @include border-radius(0 0 25px 25px);
+    .navbar{
+        // background-color: lighten($roya-blue, 0%);
+        background-color: red !important;
+    }
+      
+    i{
+        // margin-top:-2px;
+        font-size:26px;
+        width:26px;
+        height:26px;
+    }
+
+    .logo {
+        // height: 104px;
+        margin: -10px 10px -10px -10px;
+        padding:0;
+        // background-color:red;
+        img{
+            width: 70px;
+        }
+    }
+    .active-link{
+        background-color:$redlight;//$redlight;
+        background: linear-gradient(transparent 10%, $redlight 11%, $redlight 80%, transparent 81%);
+        color:red;
+    }
+    .loginfetch {
+      background: radial-gradient(circle closest-side at 35px 21px, lighten($orangelight, 19%) 0, lighten($orangelight, 19%) 18px, transparent 19px);
+    }
+  
+    @media (min-width: 768px) {
+    //   height: 110px;
+        .logo {
+            // width: 250px;
+            // height: 104px;
+            a{
+                font-size: 25px;
+                color:white;
+                margin: 0px 20px;
+            }
+            
+            padding:0;
+            
+            img{
+                width: 100px;
+                margin: 0px 10px 0px 0px;
+            }
+        }
+  
+        .loginfetch {
+        background: radial-gradient(circle closest-side at 35px 26px, lighten($orangelight, 19%) 0, lighten($orangelight, 19%) 18px, transparent 20px);
+        }
+ 
+        @include transitionAll(.3s);
+    }
+  
+    @media (min-width: 992px) {
+    //   height: 160px;
+      width: 90%;
+  
+      @include transitionAll(.3s);
+  
+    }
+}

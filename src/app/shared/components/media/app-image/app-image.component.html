@@ -1,0 +1,9 @@
+<div class='imgwrapper' id='imgwrap{{imgid}}' #imgref>
+    <div class='spinnerwrap'>
+        <div class='mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active spinner'></div>
+    </div>
+    <img imgid='applicationimg{{imgid}}' src='{{this.datasrc}}' class='dataimg'
+         (load)='loadImage()'
+         (error)='handleImageErrored()'
+         alt='tinyimg'/>
+</div>
