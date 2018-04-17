@@ -33,7 +33,7 @@ export class LoginFailure implements Action{
 }
 export class RefreshRequest implements Action{
     readonly type = REFRESH_REQUEST
-    constructor(public refreshToken: string){}
+    // constructor(public refreshToken: string){}
 }
 export class LogoutRequest implements Action{
     readonly type = LOGOUT_REQUEST

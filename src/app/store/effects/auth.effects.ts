@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core'
 
 import { Effect, Actions } from '@ngrx/effects'
-import { map, switchMap, catchError, timeout } from 'rxjs/operators'
+import { map, switchMap, catchError, timeout, finalize } from 'rxjs/operators'
 import { of } from 'rxjs/observable/of'
 import { Store } from '@ngrx/store'
 import { Router } from '@angular/router'
@@ -21,6 +21,7 @@ import { CookieService } from 'ngx-cookie-service'
 
 @Injectable()
 export class AuthenticationEffects {
+    // refreshRunning=false
     constructor(private actions$: Actions, private authService: fromServices.AuthService,
         private cookiesService: CookieService,
         private store: Store<AppState>,
@@ -51,9 +52,8 @@ export class AuthenticationEffects {
     logoutRequest$ = this.actions$.ofType(authActions.LOGOUT_REQUEST)
         .pipe(
             switchMap((action: authActions.LogoutRequest) => {
-                // console.log('Auth effect login request')
+                console.log('Auth effect login request')
                 let jwtToken = this.cookiesService.get('jwt')
-                console.log('before delete:' + jwtToken)
                 return this.authService.logout(jwtToken).pipe(
                     map(() => {
                         // console.log('Return New LoginSuccess Action ')
@@ -63,7 +63,7 @@ export class AuthenticationEffects {
                         console.log('after delete:' + jwtToken)
                         return new authActions.LogoutSuccess()
                     }),
-                    catchError(error => of(new authActions.LogoutFailure(error)))
+                    catchError(error => of(new authActions.LogoutFailure(error)))  
                 )
             })
         )
@@ -71,24 +71,42 @@ export class AuthenticationEffects {
         refreshRequest$ = this.actions$.ofType(authActions.REFRESH_REQUEST)
             .pipe(
                 switchMap((action: authActions.RefreshRequest) => {
+                //     if( this.refreshRunning )
+                //     return of({type:"NO_ACTION"});
+                // else
+                //     this.refreshRunning = true
+
+                    let refreshToken = this.cookiesService.get('refreshtoken')
+                    let expirationDate = this.cookiesService.get('expirationdate')!=undefined?Number(this.cookiesService.get('expirationdate')):undefined
+                    // console.log('Actual date: '+new Date().getTime())
+                    if( expirationDate==undefined || refreshToken==undefined)
+                        console.log('No refresh token because no cookies')
+                    if( expirationDate!=undefined && new Date(expirationDate).getTime()>new Date().getTime())
+                        console.log('No refresh token expiration date still valid')
+                    if( expirationDate==undefined || refreshToken==undefined || new Date(expirationDate).getTime()>new Date().getTime())
+                      return of({type:"NO_ACTION"});
+                    console.log('Refresh auth token! Expiration date: '+new Date(expirationDate))
+                    console.log('Refresh auth token! Refresh token '+refreshToken)
+                                    
                     // let jwtToken = this.cookiesService.get('jwt')
                     // console.log('before delete:' + jwtToken)
-                    let refreshtoken = this.cookiesService.get('refreshtoken')
-                    console.log('Auth refresh auth token request: '+refreshtoken)
+                    // let refreshtoken = this.cookiesService.get('refreshtoken')
+                    // console.log('Auth refresh auth token request: '+refreshtoken)
                     // this.cookiesService.deleteAll()
-                    return this.authService.refreshToken(refreshtoken).pipe(
+                    return this.authService.refreshToken(refreshToken).pipe(
                         map(userAccessData=>this.processAccessDataResponse(userAccessData)),
                         catchError(serverError => {
                             this.store.dispatch(new authActions.LoginFailure('Could not authenticate. Please login again'))
                             return of(new appActions.AppError('Authentication data expired. Please login again'))
                         })
+                        // ,finalize( ()=> this.refreshRunning = false)                  
                     )
                 })
             )
         private processAccessDataResponse(userAccessData: any) {
             // console.log('Return New LoginSuccess Action ')
             console.log(userAccessData)
-            var expireDate = new Date(new Date().getTime() + (1000 * userAccessData.expires_in))//userAccessData.expires_in))
+            var expireDate = new Date(new Date().getTime() + (1000 * 20))//userAccessData.expires_in))
             console.log('expiration date :' + expireDate)
             // this.cookiesService.set('jwt', userAccessData.access_token, expireDate, '/', undefined, true)
             // this.cookiesService.set('refreshtoken', userAccessData.refresh_token, expireDate, '/', undefined, true)
@@ -100,8 +118,10 @@ export class AuthenticationEffects {
             this.cookiesService.set('expirationdate', '' + expireDate.getTime())
 
             // this.cookiesService.set('authority', userAccessData.re)
-            this.router.navigate(['/']);
+            // this.router.navigate(['/']);
             return new authActions.LoginSuccess(userAccessData.authority)
         }
-    
+        private sleep(ms = 0) {
+            return new Promise(r => setTimeout(r, ms));
+        }
 }

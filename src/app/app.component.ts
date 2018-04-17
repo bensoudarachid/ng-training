@@ -50,20 +50,20 @@ export class AppComponent implements OnInit, AfterViewInit {
     // this.cookiesService.set('jwt', userAccessData.access_token,expireDate,'/',undefined,true)
     //this.cookiesService.set('refreshtoken', userAccessData.refresh_token,expireDate,'/',undefined,true)
     let authority = this.cookiesService.get('authority')
-    let refreshToken = this.cookiesService.get('refresh_token')
+    let refreshToken = this.cookiesService.get('refreshtoken')
     let expirationDate = this.cookiesService.get('expirationdate')!=undefined?Number(this.cookiesService.get('expirationdate')):undefined
     console.log('Actual date: '+new Date())
-    console.log('Actual date: '+new Date().getTime())
+    // console.log('Actual date: '+new Date().getTime())
     if( expirationDate==undefined || refreshToken==undefined)
       return;
     console.log('Expiration date: '+new Date(expirationDate))
-    console.log('Expiration date: '+new Date(expirationDate).getTime())
+    // console.log('Expiration date: '+new Date(expirationDate).getTime())
     if( new Date(expirationDate).getTime()>new Date().getTime() ){
       console.log('Dispatch login success.')
       this.store.dispatch(new authActions.LoginSuccess(authority))
     }else{
       console.log('Dispatch refresh token.')
-      this.store.dispatch(new authActions.RefreshRequest(refreshToken))
+      this.store.dispatch(new authActions.RefreshRequest())
     }
   }
   startLogin(event) {

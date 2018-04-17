@@ -44,7 +44,7 @@ export class AuthService {
     let body = new HttpParams()
     body = body.set('refresh_token', refreshToken)
     body = body.set('grant_type', 'refresh_token')
-    
+    console.log('Auth service Post: ' + refreshToken)
     return this.http.post('http://abbaslearn.school.royasoftware.com:8081/oauth/token',
       body.toString()
       , httpOptions
