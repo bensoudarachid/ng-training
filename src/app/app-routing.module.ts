@@ -8,12 +8,12 @@ import { TrainingAppComponent } from './training/public/trainingapp/trainingapp.
 const routes: Routes = [
   // { path: 'trainings', component: TrainingAppComponent },
   { path: 'trainings',
-    // loadChildren: 'app/training/training.module#TrainingModule'
-    children:[
-      {
-        path: '', component: TrainingAppComponent
-      }
-    ]
+    loadChildren: 'app/training/training.module#TrainingModule'
+    // children:[
+    //   {
+    //     path: '', component: TrainingAppComponent
+    //   }
+    // ]
   },
   { path: '', component: HomeComponent }
 ]

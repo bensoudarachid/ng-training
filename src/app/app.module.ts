@@ -52,8 +52,7 @@ import { TrainingItemComponent } from './training/public/training-item/training-
   imports: [
     AppRoutingModule,
     // TrainingModule.forRoot(),
-    TrainingModule,
-    UiModule,
+    // TrainingModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,

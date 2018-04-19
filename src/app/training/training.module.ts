@@ -33,10 +33,10 @@ const routes: Routes = [
   ],
   providers: [TrainingsService],
   exports:[
-    CommonModule,
-    TrainingAppComponent,
-    TrainingItemComponent,
-    UiModule,
+    // CommonModule,
+    // TrainingAppComponent,
+    // TrainingItemComponent,
+    // UiModule,
     RouterModule,
     EffectsModule
   ]
