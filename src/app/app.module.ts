@@ -11,56 +11,54 @@ import { AppHttpInterceptor } from './services/apphttp.interceptor'
 import { StoreModule } from '@ngrx/store'
 import { EffectsModule } from '@ngrx/effects'
 
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component'
-import { TrainingAppComponent } from './features/training/public/trainingapp/trainingapp.component'
-import { TrainingsService } from './services/trainings/trainings.service'
+// import { TrainingAppComponent } from './training/public/trainingapp/trainingapp.component'
 import { AuthService } from './services/auth/auth.service'
-// import { AppHttpInterceptor } from './services/http.interceptor'
-import { HomeComponent } from './features/home/home.component'
-// import { trainingReducer } from './store/reducers/training.reducer'
-// import { trainingsReducer } from './store/reducers/trainings.reducer'
-// import { authReducer } from './store/reducers/auth.reducer'
+import { HomeComponent } from './home/home.component'
 import * as fromServices  from './services'
 
 import { reducers,effects } from './store'
 import { Actions} from '@ngrx/effects'
 
-// import '../../node_modules/material-design-lite/material.min.js'
-// import '../../node_modules/material-design-lite/material.min.css'
-
-// import '../../node_modules/mdl-selectfield/dist/mdl-selectfield.css'
-// import '../../node_modules/mdl-selectfield/dist/mdl-selectfield.js'
 import '../scss/animate.css'
 import '../scss/app.scss';
 import { NavComponent } from './nav/nav.component';
 import { NavPublicComponent } from './nav/navpublic.component';
 import { FooterComponent } from './footer/footer.component';
-import { TrainingItemComponent } from './features/training/public/training-item/training-item.component';
-import { AppImageComponent } from './shared/components/media/app-image/app-image.component'
+import { TrainingModule } from './training/training.module';
+import { UiModule } from './shared/components/ui/ui.module';
+import { TrainingItemComponent } from './training/public/training-item/training-item.component';
 
-const routes: Routes = [
-  { path: 'trainings', component: TrainingAppComponent },
-  { path: '', component: HomeComponent }
-]
+
+// const routes: Routes = [
+//   { path: 'trainings', component: TrainingAppComponent },
+//   { path: '', component: HomeComponent }
+// ]
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    TrainingAppComponent,
+    // TrainingAppComponent,
+    // TrainingItemComponent,
     HomeComponent,
     NavComponent,
     NavPublicComponent,
-    FooterComponent,
-    TrainingItemComponent,
-    AppImageComponent
+    FooterComponent
+    // AppImageComponent,
+    // routingComponents
   ],
   imports: [
+    AppRoutingModule,
+    // TrainingModule.forRoot(),
+    TrainingModule,
+    UiModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forRoot(routes),
+    // RouterModule.forRoot(routes),
     StoreModule.forRoot(reducers),
     // StoreModule.forRoot({ trainingsReducer,authReducer}),
     // StoreModule.forFeature('main',reducers),
@@ -70,7 +68,7 @@ const routes: Routes = [
     EffectsModule.forRoot(effects),
   ],
   schemas: [NO_ERRORS_SCHEMA],
-  providers: [    {
+  providers: [ {
     provide: HTTP_INTERCEPTORS,
     useClass: AppHttpInterceptor,
     multi: true

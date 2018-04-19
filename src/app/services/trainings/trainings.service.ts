@@ -9,13 +9,14 @@ import { catchError } from 'rxjs/operators';
 export class TrainingsService {
 
   constructor(public http:HttpClient) { 
-    // console.log('trainingsservice connected...')
+    console.log('trainingsservice connected...')
   }
   // getTrainings(){
   //   return this.http.get('http://abbaslearn.schoolapi.royasoftware.com:8080/api/trainings/123')
   //     .map(res => res)
   // }
   getTrainings(): Observable<Training[]>{
+    console.log('trainingsservice get trainings')
     // return this.http.get('https://jsonplaceholder.typicode.com/posts')
     //   .map(res => res.json())
     return this.http.get('http://abbaslearn.schoolapi.royasoftware.com:8080/api/trainings/123')

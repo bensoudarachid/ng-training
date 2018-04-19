@@ -6,11 +6,11 @@ import {Store , select} from '@ngrx/store'
 import {Map,List} from 'immutable'
 
 // import * as TrainingActions from '../../../../store/actions/training.actions'
-import { Training } from '../../../../model/training'
-import { TrainingsService } from '../../../../services/trainings/trainings.service'
-import {AppState} from '../../../../store/appstate'
+import { Training } from '../../../model/training'
+import { TrainingsService } from '../../../services/trainings/trainings.service'
+import {AppState} from '../../../store/appstate'
 // import {LOAD_TRAININGS} from '../../../../store/reducers/training.reducer'
-import * as TrainingActions from '../../../../store/actions/training.actions'
+import * as TrainingActions from '../../../store/actions/training.actions'
 
 
 @Component({

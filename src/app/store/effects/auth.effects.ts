@@ -83,7 +83,7 @@ export class AuthenticationEffects {
                         console.log('No refresh token because no cookies')
                     if( expirationDate!=undefined && new Date(expirationDate).getTime()>new Date().getTime())
                         console.log('No refresh token expiration date still valid')
-                    if( expirationDate==undefined || refreshToken==undefined || new Date(expirationDate).getTime()>new Date().getTime())
+                    if( expirationDate==undefined||refreshToken==undefined||refreshToken==''||new Date(expirationDate).getTime()>new Date().getTime())
                       return of({type:"NO_ACTION"});
                     console.log('Refresh auth token! Expiration date: '+new Date(expirationDate))
                     console.log('Refresh auth token! Refresh token '+refreshToken)
@@ -106,7 +106,7 @@ export class AuthenticationEffects {
         private processAccessDataResponse(userAccessData: any) {
             // console.log('Return New LoginSuccess Action ')
             console.log(userAccessData)
-            var expireDate = new Date(new Date().getTime() + (1000 * 20))//userAccessData.expires_in))
+            var expireDate = new Date(new Date().getTime() + (1000 * userAccessData.expires_in))//userAccessData.expires_in))
             console.log('expiration date :' + expireDate)
             // this.cookiesService.set('jwt', userAccessData.access_token, expireDate, '/', undefined, true)
             // this.cookiesService.set('refreshtoken', userAccessData.refresh_token, expireDate, '/', undefined, true)

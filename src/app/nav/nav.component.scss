@@ -33,8 +33,18 @@
         margin: -10px 10px -10px -10px;
         padding:0;
         // background-color:red;
+        
         img{
             width: 70px;
+            margin: 0px 10px 0px 0px;
+        }
+        span{
+            color:lighten($redlight,15%);
+        }
+        div{
+            font-size: 25px;
+            color:white;
+            margin: 0px 10px;
         }
     }
     .active-link{
@@ -51,9 +61,8 @@
         .logo {
             // width: 250px;
             // height: 104px;
-            a{
+            div{
                 font-size: 25px;
-                color:white;
                 margin: 0px 20px;
             }
             
