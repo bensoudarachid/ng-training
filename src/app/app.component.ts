@@ -24,7 +24,8 @@ export class AppComponent implements OnInit, AfterViewInit {
   @ViewChild('errordlg') errorDlg;
 
   constructor(private store: Store<AppState>, private cookiesService: CookieService) {
-    this.appError = this.store.select(state => state.appReducer.get('errormessage'))
+    // this.appError = this.store.select(state => state.appReducer.get('errormessage'))
+    this.appError = this.store.select(state => state.appReducer.errormessage)
     this.appError.subscribe((data) => {
       if (data != undefined) {
         this.appErrorBuffer = data

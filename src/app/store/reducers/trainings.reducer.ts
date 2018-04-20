@@ -6,7 +6,6 @@ import { createFeatureSelector } from '@ngrx/store'
 import * as actions from '../actions/training.actions'
 import { Training } from '../../model/training'
 
-// export const LOAD_TRAININGS = 'LOAD_TRAININGS'
 export const trainingAdapter = createEntityAdapter<Training>()
 
 
@@ -21,16 +20,13 @@ const initTrainingsState: TrainingsState = trainingAdapter.getInitialState({
 export function trainingsReducer(state: TrainingsState = initTrainingsState, action: actions.TrainingActions) {
     switch (action.type) {
         case actions.LOAD_TRAININGS:
-            console.log('load trainings')
+            // console.log('load trainings')
             // state = { ...state, loadingTrainings: true }
             return state
         case actions.LOAD_TRAININGS_SUCCESS:
             // state = { ...state, loadingTrainings: false }
-            console.log('load trainings success')
+            // console.log('load trainings success')
             let trainingArray = (<actions.LoadTrainingsSuccess>action).payload
-            // if (trainingArray == undefined) {
-            //     trainingArray = []
-            // }
             state = trainingAdapter.removeAll(state)
             state = trainingAdapter.addAll(trainingArray, state)
             return state

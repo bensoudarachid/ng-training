@@ -2,9 +2,9 @@ import {Map,List} from 'immutable'
 import { Training } from '../model/training'
 
 export interface AppState {
-	trainingsReducer: Map<any,any>
-	authReducer:Map<any,any>
-	appReducer:Map<any,any>
+	// trainingsReducer: Map<any,any>
+	authReducer:any
+	appReducer:any
 }
 
 // export interface TrainingsState {

@@ -29,17 +29,17 @@
         // background: url('../assets/images/dna3.png') no-repeat center center fixed;
         background: url('../assets/images/logo1.svg') no-repeat center center fixed;
         
-        -webkit-background-size:cover;
-        -moz-background-size:cover;
-        -o-background-size:cover;
+        -webkit-background-size:auto 100%;
+        -moz-background-size:auto 100%;
+        -o-background-size:auto 100%;
         background-size:auto 100%;
         // background-size:cover;
         transform:translate(0px,15%) scale(1);
-        -webkit-filter: blur(2px);
-        -moz-filter: blur(2px);
-        -o-filter: blur(2px);
-        -ms-filter: blur(2px);
-        filter: blur(2px);  
+        -webkit-filter: blur(2px) sepia(100%);
+        -moz-filter: blur(2px) sepia(100%);
+        -o-filter: blur(2px) sepia(100%);
+        -ms-filter: blur(2px) sepia(100%);
+        filter: blur(2px) sepia(100%);  
     }
     .backgrcolorparallax{
         // background-color: red;

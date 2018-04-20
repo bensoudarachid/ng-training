@@ -29,7 +29,7 @@ export class TrainingAppComponent implements OnInit, OnDestroy {
 
   // constructor(private trainingsService: TrainingsService, private store: Store<AppState>) {
   constructor(private store: Store<fromTrainingReducer.TrainingsState>) {
-      console.log('TrainingAppComponent constructor ran...')
+      // console.log('TrainingAppComponent constructor ran...')
     // this._trainings=store.select(state=>{
     //   console.log('****************constructor this._trainings')
     //   console.log(state.training)  
