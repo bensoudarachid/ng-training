@@ -27,16 +27,7 @@ export class TrainingAppComponent implements OnInit, OnDestroy {
   trainings$: Observable<Training[]>=of([])
   private isEdit = false;
 
-  // constructor(private trainingsService: TrainingsService, private store: Store<AppState>) {
   constructor(private store: Store<fromTrainingReducer.TrainingsState>) {
-      // console.log('TrainingAppComponent constructor ran...')
-    // this._trainings=store.select(state=>{
-    //   console.log('****************constructor this._trainings')
-    //   console.log(state.training)  
-    //   return state.training
-    // })
-    // this.trainingsState=store.pipe(select('training'))
-    // this.trainings=this.store.select(state => state.trainingsReducer.get('trainings'))
   }
 
   ngOnInit() {

@@ -1,7 +1,6 @@
 import { Inject } from '@angular/core';
 // import {AppAction} from '../AppAction'
 import {Action} from '@ngrx/store'
-import {Map,List} from 'immutable'
 import { CookieService } from 'ngx-cookie-service'
 
 // import * as TrainingActions from './training.actions'
@@ -27,7 +26,7 @@ export interface AuthState {
     isAuthenticated: boolean
     authority: string
     registrationStep: number
-    registrationError: Map<any,any>
+    registrationError: any
 }
 
 const initAuthState:AuthState = {
@@ -36,9 +35,9 @@ const initAuthState:AuthState = {
     isAuthenticated: false,//cookie.load('jwt') ? true : false,
     authority: '',//cookie.load('authority'),
     registrationStep: 1,
-    registrationError: Map({})
+    registrationError: {}
 }
-export function authReducer(auth=Map(initAuthState), action:Action) {
+export function authReducer(auth=initAuthState, action:Action) {
     // let authenticated =  false //cookie.load('jwt') ? true :
     // let authority = ''//cookie.load('authority')
     switch (action.type) {
@@ -58,52 +57,61 @@ export function authReducer(auth=Map(initAuthState), action:Action) {
 
         case authActions.LOGIN_REQUEST:
             console.log('Store reducer. login request')
-            auth = auth.set('isFetching', true)
-            // auth = auth.set('usercreds', {(<AuthActions.LoginRequest>action).email,(<AuthActions.LoginRequest>action).password} )
-            auth = auth.remove('loginMessage')
-            auth = auth.remove('loginProgress')
-            auth = auth.set('isAuthenticated', false)
+            auth = {...auth, isFetching:true}
+            // auth = auth.remove('loginMessage')
+            // auth = {...auth, loginMessage:undefined}
+            // auth = auth.remove('loginProgress')
+            // auth = auth.set('isAuthenticated', false)
+            auth = {...auth, isAuthenticated:false}
             return auth
 
         case authActions.LOGIN_SUCCESS:
             console.log('Reducer Authentication success')
-            auth = auth.set('isFetching', false)
-            auth = auth.set('errorMessage', '')
-            auth = auth.set('isAuthenticated', true)
-            auth = auth.set('authority', (<authActions.LoginSuccess>action).authority)
-            auth = auth.remove('usercreds')
-            auth = auth.remove('loginMessage')
-            auth = auth.remove('loginProgress')
-            auth = auth.remove('loginactualurl')
-            auth = auth.remove('loginrequest')
+            // auth = auth.set('isFetching', false)
+            auth = {...auth, isFetching:false}
+            // auth = auth.set('errorMessage', '')
+            // auth = auth.set('isAuthenticated', true)
+            auth = {...auth, isAuthenticated:true}
+            // auth = auth.set('authority', (<authActions.LoginSuccess>action).authority)
+            auth = {...auth, authority:(<authActions.LoginSuccess>action).authority}
+            // auth = auth.remove('usercreds')
+            // auth = auth.remove('loginMessage')
+            // auth = auth.remove('loginProgress')
+            // auth = auth.remove('loginactualurl')
+            // auth = auth.remove('loginrequest')
             return auth
 
         case authActions.LOGIN_FAILURE:
             console.log('Reducer Authentication failure: '+((<authActions.LoginFailure>action).loginError))
-            auth = auth.set('isFetching', false)
-            auth = auth.set('isAuthenticated', false)
-            // auth = auth.set('errorMessage', action.payload.message)
-            auth = auth.remove('usercreds')
-            auth = auth.remove('loginProgress')
-            auth = auth.remove('loginactualurl')
-            auth = auth.remove('loginrequest')
+            // auth = auth.set('isFetching', false)
+            auth = {...auth, isFetching:false}
+            // auth = auth.set('isAuthenticated', false)
+            auth = {...auth, isAuthenticated:false}
+            // auth = auth.remove('usercreds')
+            // auth = auth.remove('loginProgress')
+            // auth = auth.remove('loginactualurl')
+            // auth = auth.remove('loginrequest')
             return auth
             
         case authActions.LOGOUT_SUCCESS:
-            auth = auth.set('isFetching', false)
-            auth = auth.set('isAuthenticated', false)
-            auth = auth.remove('loginMessage')
-            auth = auth.remove('loginProgress')
-            auth = auth.remove('loginactualurl')
-            auth = auth.remove('loginrequest')
+            // auth = auth.set('isFetching', false)
+            auth = {...auth, isFetching:false}
+            // auth = auth.set('isAuthenticated', false)
+            auth = {...auth, isAuthenticated:false}
+            // auth = auth.remove('loginMessage')
+            // auth = auth.remove('loginProgress')
+            // auth = auth.remove('loginactualurl')
+            // auth = auth.remove('loginrequest')
             return auth
         case authActions.LOGOUT_FAILURE:
-            auth = auth.set('isFetching', false)
-            auth = auth.set('isAuthenticated', true)
-            auth = auth.remove('usercreds')
-            auth = auth.remove('loginProgress')
-            auth = auth.remove('loginactualurl')
-            auth = auth.remove('loginrequest')
+            // auth = auth.set('isFetching', false)
+            auth = {...auth, isFetching:false}
+            // auth = auth.set('isAuthenticated', true)
+            auth = {...auth, isAuthenticated:true}
+            // auth = auth.remove('usercreds')
+            // auth = auth.remove('loginProgress')
+            // auth = auth.remove('loginactualurl')
+            // auth = auth.remove('loginrequest')
             return auth
         // case REGISTER_REQUEST:
         //     auth = auth.set('isRegistrationFetching', true)
