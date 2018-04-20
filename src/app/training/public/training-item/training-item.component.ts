@@ -1,5 +1,5 @@
 import { Component,Input,OnInit } from '@angular/core';
-import {Map,List} from 'immutable'
+// import {Map,List} from 'immutable'
 
 
 @Component({
@@ -8,7 +8,7 @@ import {Map,List} from 'immutable'
   styleUrls: ['./training-item.component.scss']
 })
 export class TrainingItemComponent implements OnInit {
-  @Input() trainingInput:Map<any,any>
+  @Input() trainingInput:any
   @Input() api
   trainingid:string
   // imgid:string
@@ -16,7 +16,7 @@ export class TrainingItemComponent implements OnInit {
 
   ngOnInit() {
     // trainingInput.imgid
-    this.trainingid=this.trainingInput.get('id')
+    this.trainingid=this.trainingInput.id
     // console.log('Image id = '+this.trainingInput.get('id'))
   }
 

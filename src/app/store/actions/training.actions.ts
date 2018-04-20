@@ -18,3 +18,5 @@ export class LoadTrainingsFail implements Action{
     readonly type = LOAD_TRAININGS_FAIL
     constructor(public payload: any){}
 }
+
+export type TrainingActions = LoadTrainings|LoadTrainingsSuccess|LoadTrainingsFail

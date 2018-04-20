@@ -3,14 +3,15 @@ import { NgSwitchCase } from '@angular/common';
 import { StoreModule } from '@ngrx/store'
 import { Observable } from 'rxjs/Observable'
 import {Store , select} from '@ngrx/store'
-import {Map,List} from 'immutable'
+// import {Map,List} from 'immutable'
 
 // import * as TrainingActions from '../../../../store/actions/training.actions'
 import { Training } from '../../../model/training'
 import { TrainingsService } from '../../../services/trainings/trainings.service'
-import {AppState} from '../../../store/appstate'
-// import {LOAD_TRAININGS} from '../../../../store/reducers/training.reducer'
+// import {AppState} from '../../../store/appstate'
+import * as fromTrainingReducer  from '../../../store/reducers/trainings.reducer'
 import * as TrainingActions from '../../../store/actions/training.actions'
+import { of } from 'rxjs/observable/of';
 
 
 @Component({
@@ -23,11 +24,11 @@ export class TrainingAppComponent implements OnInit, OnDestroy {
   private _name: string
   private _address: Address
   private _hobbies: string[]
-  trainings: Observable<List<Training>>
+  trainings$: Observable<Training[]>=of([])
   private isEdit = false;
 
   // constructor(private trainingsService: TrainingsService, private store: Store<AppState>) {
-  constructor(private store: Store<AppState>) {
+  constructor(private store: Store<fromTrainingReducer.TrainingsState>) {
       console.log('TrainingAppComponent constructor ran...')
     // this._trainings=store.select(state=>{
     //   console.log('****************constructor this._trainings')
@@ -35,7 +36,7 @@ export class TrainingAppComponent implements OnInit, OnDestroy {
     //   return state.training
     // })
     // this.trainingsState=store.pipe(select('training'))
-    this.trainings=this.store.select(state => state.trainingsReducer.get('trainings'))
+    // this.trainings=this.store.select(state => state.trainingsReducer.get('trainings'))
   }
 
   ngOnInit() {
@@ -58,6 +59,7 @@ export class TrainingAppComponent implements OnInit, OnDestroy {
     //   }
     // })
     // this.getTrainings()
+    this.trainings$=this.store.select(fromTrainingReducer.selectAll)    
   }
   ngOnDestroy(){
     // this.store.dispatch({

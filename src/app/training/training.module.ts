@@ -9,6 +9,8 @@ import { UiModule } from '../shared/components/ui/ui.module';
 import { TrainingsService } from '../services/trainings/trainings.service';
 import { TrainingEffects } from '../store/effects/trainings.effects';
 import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { trainingsReducer } from '../store/reducers/trainings.reducer';
 // import { TrainingEffects } from '../store';
 // import { TrainingsService } from '../services';
 
@@ -24,6 +26,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
+    StoreModule.forFeature('training', trainingsReducer),
     UiModule,
     EffectsModule.forFeature([TrainingEffects]),
   ],
