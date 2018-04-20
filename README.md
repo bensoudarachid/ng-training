@@ -42,28 +42,28 @@ The App is composed of two projects. Ng-Training is the Front-End part.
 
 This is a work in progress. The code is not optimal yet
 
-##Covered topics:
+### Covered topics:
 
-##Performance:
+### Performance:
 - Introduction to reactive programming using Akka concurrency and cluster technology
 - Spring-Rest API delivers Optmized Image Sizes using Batik from regular images formats + SVG
 - Lazy loading
 - progressive image loading
 
-##Security:
+### Security:
 - OAuth-2 Authentication and Role based Authorization, JDBC TokenStore
 
-##Architecture:
+### Architecture:
 - Feature Module oriented Front End Code Architecture
 - Classic back end 3 Tier architecture with REST controller, Service, Repository. Redis cache, Rabbit messaging for websockets
  
-##Testing:
+### Testing:
  
 
-##Development:
+### Development:
 - Angular cli 
 
-##Front End:
+### Front End:
 - One Scss file per Angular component
 - Parallax scrolling
 - Use of Angular Bootstrap Material Design framework
@@ -74,7 +74,7 @@ This is a work in progress. The code is not optimal yet
 - Injectable dependencies like services and effects
  
  
-##Back End:
+### Back End:
 - Letsencrypt automatic certificate renewal through Spring Scheduler
 - Json automatic date conversion in Java (@JsonFormat)
 - Get Images as dynamic, access-protected Spring-REST Api resources
