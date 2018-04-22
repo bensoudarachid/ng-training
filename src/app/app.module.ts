@@ -29,6 +29,7 @@ import { FooterComponent } from './footer/footer.component';
 import { TrainingModule } from './training/training.module';
 import { UiModule } from './shared/components/ui/ui.module';
 import { TrainingItemComponent } from './training/public/training-item/training-item.component';
+// import { ApiConnection } from './services/api-connection.service';
 
 
 // const routes: Routes = [
@@ -67,7 +68,8 @@ import { TrainingItemComponent } from './training/public/training-item/training-
     EffectsModule.forRoot(effects),
   ],
   schemas: [NO_ERRORS_SCHEMA],
-  providers: [ {
+  providers: [ //ApiConnection,
+    {
     provide: HTTP_INTERCEPTORS,
     useClass: AppHttpInterceptor,
     multi: true

@@ -28,19 +28,19 @@ export class NavComponent implements OnInit {
   loginEvent = new EventEmitter<string>();
 
   constructor( private cookieService: CookieService, private store: Store<AppState> ) { 
-    console.log('constructor isAuthenticated '+this.isAuthenticated$)
+    // console.log('constructor isAuthenticated '+this.isAuthenticated$)
     this.isAuthenticated$=this.store.select(state => state.authReducer.isAuthenticated)    
   }
 
   ngOnInit() {
-    console.log('ngOnInit isAuthenticated '+this.isAuthenticated$)
-    console.log(this.isAuthenticated$)
+    // console.log('ngOnInit isAuthenticated '+this.isAuthenticated$)
+    // console.log(this.isAuthenticated$)
   }
   startLogin(){
     this.loginEvent.emit('startLogin')
   }
   signOut(){
-    console.log('Sign Out now ')
+    // console.log('Sign Out now ')
     this.store.dispatch(new LoginActions.LogoutRequest())
   }
 

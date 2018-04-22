@@ -79,10 +79,10 @@ export class AuthenticationEffects {
                     let refreshToken = this.cookiesService.get('refreshtoken')
                     let expirationDate = this.cookiesService.get('expirationdate')!=undefined?Number(this.cookiesService.get('expirationdate')):undefined
                     // console.log('Actual date: '+new Date().getTime())
-                    if( expirationDate==undefined || refreshToken==undefined)
-                        console.log('No refresh token because no cookies')
-                    if( expirationDate!=undefined && new Date(expirationDate).getTime()>new Date().getTime())
-                        console.log('No refresh token expiration date still valid')
+                    // if( expirationDate==undefined || refreshToken==undefined)
+                    //     console.log('No refresh token because no cookies')
+                    // if( expirationDate!=undefined && new Date(expirationDate).getTime()>new Date().getTime())
+                    //     console.log('No refresh token expiration date still valid')
                     if( expirationDate==undefined||refreshToken==undefined||refreshToken==''||new Date(expirationDate).getTime()>new Date().getTime())
                       return of({type:"NO_ACTION"});
                     console.log('Refresh auth token! Expiration date: '+new Date(expirationDate))

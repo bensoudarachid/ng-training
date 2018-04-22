@@ -1,11 +1,14 @@
 @import '../../../../../scss/styles.scss';
 .imgwrapper {
     position: relative;
+    height: 100%;
+    // background-color:orange;
     .dataimg {
+      // background-color:red;
         // position: absolute;
     //   position: absolute;
-      width: 100px;
-      height: 100px;
+      // width: 100px;
+      // height: 100px;
       -webkit-filter: blur(10px);
       -moz-filter: blur(10px);
       -o-filter: blur(10px);

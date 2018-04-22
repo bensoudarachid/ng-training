@@ -9,14 +9,15 @@ import * as authActions from '../store/actions/auth.actions'
 export class AppHttpInterceptor implements HttpInterceptor {
   constructor(private store: Store<AppState>) { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log('Global HttpClient Interceptor reporting for duty, sir! Inject auth actions and send refresh token now')
+    // console.log('Global HttpClient Interceptor reporting for duty, sir! Inject auth actions and send refresh token now')
     if (!req.url.endsWith('/oauth/token') && !req.url.endsWith('/oauth/logout'))
       this.store.dispatch(new authActions.RefreshRequest())
     // this.store.dispatch(new authActions.RefreshRequest())
     // let h = req.headers.set('Authorization', 'Basic ' + btoa('clientapp:123456'))
+    let h = req.headers.set('ClientHost', 'demo1.school.royasoftware.com')
     // h = h.set('Content-Type', 'application/json')
     const authReq = req.clone({
-      // headers: h
+      headers: h
     });
     return next.handle(authReq)
 

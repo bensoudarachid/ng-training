@@ -3,13 +3,11 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service'
 
 import { User } from '../../model/user';
+import { ApiConnection } from '../api-connection.service';
 @Injectable()
 export class AuthService {
-
-
     
   constructor(private http: HttpClient, private cookieService: CookieService) { }
-
 
   login(email: string, password: string) {
     // let params = new HttpParams()
@@ -27,7 +25,7 @@ export class AuthService {
     body = body.set('password', password);
     body = body.set('grant_type', 'password')
     
-    return this.http.post('http://abbaslearn.school.royasoftware.com:8081/oauth/token',
+    return this.http.post(ApiConnection.API_ENDPOINT+'/oauth/token',
       body.toString()
       , httpOptions
     )
@@ -45,7 +43,7 @@ export class AuthService {
     body = body.set('refresh_token', refreshToken)
     body = body.set('grant_type', 'refresh_token')
     console.log('Auth service Post: ' + refreshToken)
-    return this.http.post('http://abbaslearn.school.royasoftware.com:8081/oauth/token',
+    return this.http.post(ApiConnection.API_ENDPOINT+'/oauth/token',
       body.toString()
       , httpOptions
     )
@@ -66,7 +64,7 @@ export class AuthService {
     // body = body.set('password', password);
     // body = body.set('grant_type', 'password')
 
-    return this.http.post('http://abbaslearn.school.royasoftware.com:8081/oauth/logout',
+    return this.http.post(ApiConnection.API_ENDPOINT+'/oauth/logout',
       body.toString()
       , httpOptions
     )
