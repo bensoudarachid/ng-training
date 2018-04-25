@@ -16,14 +16,25 @@
     </logo>
     <links>
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item waves-light" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}" mdbRippleRadius>
-                <a class="nav-link" routerLink="/">Home
-                    <span class="sr-only">(current)</span>
-                </a>
-            </li>
-            <li class="nav-item waves-light" routerLinkActive="active-link" mdbRippleRadius>
-                <a class="nav-link" routerLink="/trainings">Trainings</a>
-            </li>
+            <div *ngIf="!(isAuthenticated$|async); else leftadminnav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item waves-light" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}" mdbRippleRadius>
+                        <a class="nav-link" routerLink="/">Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item waves-light" routerLinkActive="active-link" mdbRippleRadius>
+                        <a class="nav-link" routerLink="/trainings">Trainings</a>
+                    </li>
+                </ul>
+            </div>
+            <ng-template #leftadminnav>
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item waves-light" routerLinkActive="active-link" mdbRippleRadius>
+                        <a class="nav-link" routerLink="/admin/trainings">Admin Trainings</a>
+                    </li>
+                </ul>
+            </ng-template>
         </ul>
         <!-- <ul class="navbar-nav mr-right">
             <li class="nav-item waves-light" mdbRippleRadius>
@@ -42,20 +53,20 @@
                     </ng-template>                
             </li>
         </ul> -->
-        <div *ngIf="!(isAuthenticated$|async); else signout">
+        <div *ngIf="!(isAuthenticated$|async); else rightadminnav">
             <ul class="navbar-nav mr-right">
                 <li class="nav-item waves-light" mdbRippleRadius>
                     <a class="nav-link">Register</a>
                 </li>
                 <li class="nav-item waves-light" mdbRippleRadius>
                     <a class="nav-link">
-                            <!-- form.show() -->
-                        <i (click)="startLogin()" class="fa fa-sign-in" aria-hidden="true"></i> 
+                        <!-- form.show() -->
+                        <i (click)="startLogin()" class="fa fa-sign-in" aria-hidden="true"></i>
                     </a>
                 </li>
             </ul>
         </div>
-        <ng-template #signout>
+        <ng-template #rightadminnav>
             <ul class="navbar-nav mr-right">
                 <li>
                     <a class="nav-link">
@@ -67,8 +78,13 @@
         <!-- <app-navpublic></app-navpublic> -->
     </links>
 
-<!--Modal: Login Form-->
-<!-- 
+    <!-- <div *ngIf="!(isAuthenticated$|async); else leftadminnav">
+    </div>
+    <ng-template #leftadminnav>
+    </ng-template> -->
+
+    <!--Modal: Login Form-->
+    <!-- 
     <span>
       <img id='logo' src='assets/images/Blog-Deploying.svg' class='logo' alt='logo'/>
     </span>

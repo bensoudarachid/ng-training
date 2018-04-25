@@ -29,7 +29,7 @@ export class NavComponent implements OnInit {
 
   constructor( private cookieService: CookieService, private store: Store<AppState> ) { 
     // console.log('constructor isAuthenticated '+this.isAuthenticated$)
-    this.isAuthenticated$=this.store.select(state => state.authReducer.isAuthenticated)    
+    this.isAuthenticated$=this.store.select(state => state.authReducer.isAuthenticated)
   }
 
   ngOnInit() {

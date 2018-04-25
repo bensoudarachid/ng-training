@@ -13,7 +13,6 @@ import * as fromTrainingReducer  from '../../../store/reducers/trainings.reducer
 import * as TrainingActions from '../../../store/actions/training.actions'
 import { of } from 'rxjs/observable/of';
 
-
 @Component({
   selector: 'app-trainingapp',
   templateUrl: './trainingapp.component.html',
@@ -28,6 +27,7 @@ export class TrainingAppComponent implements OnInit, OnDestroy {
   private isEdit = false;
 
   constructor(private store: Store<fromTrainingReducer.TrainingsState>) {
+    
   }
 
   ngOnInit() {
@@ -50,7 +50,7 @@ export class TrainingAppComponent implements OnInit, OnDestroy {
     //   }
     // })
     // this.getTrainings()
-    this.trainings$=this.store.select(fromTrainingReducer.selectAll)    
+    this.trainings$=this.store.select(fromTrainingReducer.selectAll)
   }
   ngOnDestroy(){
     // this.store.dispatch({

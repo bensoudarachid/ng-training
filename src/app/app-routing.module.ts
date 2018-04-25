@@ -3,10 +3,13 @@ import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core'
 import { RouterModule, Routes, RouterLinkActive } from '@angular/router'
 
 import { HomeComponent } from './home/home.component'
-import { TrainingAppComponent } from './training/public/trainingapp/trainingapp.component';
+import { AuthenticationGuard } from './services/auth/auth.guard';
+// import { TrainingAppComponent } from './training/public/trainingapp/trainingapp.component';
+
 
 const routes: Routes = [
   // { path: 'trainings', component: TrainingAppComponent },
+  { path: '', component: HomeComponent },
   { path: 'trainings',
     loadChildren: 'app/training/training.module#TrainingModule'
     // children:[
@@ -15,7 +18,11 @@ const routes: Routes = [
     //   }
     // ]
   },
-  { path: '', component: HomeComponent }
+  { path: 'admin/trainings',
+    canActivate:[AuthenticationGuard],
+    loadChildren: 'app/admin/training.admin/training.admin.module#TrainingAdminModule'
+
+  }
 ]
 
 @NgModule({
