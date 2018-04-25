@@ -57,15 +57,15 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 ### Front End
 - Lazy Loading modules
+- Injectable dependencies like Services, Effects and Guards
+- Ngrx/Store and entities
+- Http Interceptor for injecting Header parameters
 - One Scss file per Angular component
 - Use of Angular Bootstrap Material Design framework
 - Interaction with OAuth2 server inclusive usage of refresh tokens
 - Reactive forms
 - Modal dialogs for login and error messages
-- Http Interceptor
-- Ngrx/Store and entities
 - Usage of Directives
-- Injectable dependencies like services and effects
 - Parallax scrolling
  
  
