@@ -27,7 +27,6 @@ export class TrainingAppComponent implements OnInit, OnDestroy {
   private isEdit = false;
 
   constructor(private store: Store<fromTrainingReducer.TrainingsState>) {
-    
   }
 
   ngOnInit() {
@@ -39,7 +38,7 @@ export class TrainingAppComponent implements OnInit, OnDestroy {
     }
     // debugger;
     this._hobbies = ['write code', 'watch movies', 'produce music']
-
+    console.log("TrainingAppComponent ngOnInit. Get trainings")
     this.store.dispatch(new TrainingActions.LoadTrainings())
     
     // this.trainingsService.getTrainings().subscribe((trainings) => {

@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core'
 import { FormsModule,ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http'
@@ -30,6 +31,7 @@ import { TrainingModule } from './training/training.module';
 import { UiModule } from './shared/components/ui/ui.module';
 import { TrainingItemComponent } from './training/public/training-item/training-item.component';
 import { AuthenticationGuard } from './services/auth/auth.guard';
+import { RegisterComponent } from './register/register.component';
 // import { ApiConnection } from './services/api-connection.service';
 
 
@@ -47,7 +49,8 @@ import { AuthenticationGuard } from './services/auth/auth.guard';
     HomeComponent,
     NavComponent,
     NavPublicComponent,
-    FooterComponent
+    FooterComponent,
+    RegisterComponent
     // AppImageComponent,
     // routingComponents
   ],
@@ -56,6 +59,7 @@ import { AuthenticationGuard } from './services/auth/auth.guard';
     // TrainingModule.forRoot(),
     // TrainingModule,
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,

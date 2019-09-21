@@ -16,7 +16,7 @@ export class TrainingEffects{
     loadTrainings$=this.actions$.ofType(trainingActions.LOAD_TRAININGS)
         .pipe(
             switchMap(()=>{
-                // console.log('training effect called')
+                console.log('training effect called')
                 return this.trainingsService.getTrainings().pipe(
                     map(trainings=> new trainingActions.LoadTrainingsSuccess(trainings)),
                     catchError(error=>of(new trainingActions.LoadTrainingsFail(error)))

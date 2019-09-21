@@ -1,7 +1,10 @@
+// @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+// @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import 'apptheme.scss';
+
 $color-primary: "133,149,150";
 $color-primary-dark: $color-primary;
 $color-accent: $color-primary;
-// @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 $orangedark: #F07818;
 $orangelight: #F0A830;
 $reddark: #E91818;
@@ -18,7 +21,6 @@ $blue: #22A7F0;
 $magenta: #17bbb0;
 $pink: #ff6ca8;
 $metallic: #8c9aa9;
-
 $roya-blue: rgba(140, 200, 233, 1.0);
 $roya-blue: #6f9;
 $roya-blue: #FF3333;
@@ -28,9 +30,9 @@ $roya-blue: #F96;
 $roya-blue: #91CED7;
 $roya-blue: #81BED7;
 $roya-blue: #81BED7;
-
 $roya-blue: #69F;
 $roya-blue: #61b6f9;
+
 // $roya-blue:#68c4f7;
 
 

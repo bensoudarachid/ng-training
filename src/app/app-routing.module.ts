@@ -1,3 +1,4 @@
+import { RegisterComponent } from './register/register.component';
 // import { CommonModule } from '@angular/common';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core'
 import { RouterModule, Routes, RouterLinkActive } from '@angular/router'
@@ -18,6 +19,7 @@ const routes: Routes = [
     //   }
     // ]
   },
+  { path: 'register', component: RegisterComponent },
   { path: 'admin/trainings',
     canActivate:[AuthenticationGuard],
     loadChildren: 'app/admin/training.admin/training.admin.module#TrainingAdminModule'

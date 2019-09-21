@@ -22,8 +22,6 @@
         background-color: rgba(white, .08);
         &:hover {
             background-color: $redlight;
-            // background: linear-gradient(transparent 1%, $redlight 2%, $redlight 98%, transparent 99%);
-            // @include transitionAll(.5s);   
         }
         a{
             height:30px;

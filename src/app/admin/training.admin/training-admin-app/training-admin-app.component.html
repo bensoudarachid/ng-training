@@ -1,3 +1,33 @@
-<p>
-  training-admin-app works!
-</p>
+<div class='admintraining'>
+  <section class="section" style="width:95%;margin: 0 auto;">
+    <div class="row">
+      <div *ngFor='let training of trainings$|async' class="col-sm-12 col-md-12 col-lg-4 mb-r">
+          <!-- <div class="card">
+              <img class="img-fluid dataimg" src="assets/images/Blog-Deploying.svg" alt="Card image cap">
+              <div class="card-body">
+                  <h4 class="card-title">{{training.get('title')}}</h4>
+                  <p class="card-text">{{training.get('shortDescription')}}</p>
+              </div>
+              <div class="card-footer">
+                  <span class="left">49$</span>
+                  <span class="right">
+                      <a placement="top" mdbTooltip="Add to Cart">
+                          <i class="fa fa-shopping-cart"></i>
+                      </a>
+                      <a placement="top" mdbTooltip="Share">
+                          <i class="fa fa-share-alt"></i>
+                      </a>
+                      <a class="active" placement="top" mdbTooltip="Added to Wishlist" container="body">
+                          <i class="fa fa-heart"></i>
+                      </a>
+                  </span>
+              </div>
+          </div> -->
+          <app-admin-training-item api='training' [trainingInput]="training"></app-admin-training-item>
+      </div>
+    </div>
+  </section>
+
+<!-- <h4>{{training.get('title')}}</h4>
+<p>{{training.get('shortDescription')}}</p> -->
+</div>
