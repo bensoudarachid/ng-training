@@ -1,6 +1,9 @@
+@import '../../../../scss/styles.scss';
+
 .card{
-    background-color:rgb(215, 236, 255);
-    .card-body{background-color:white;}
+  background-color:mat-color($primary, 50);
+  // background-color:rgb(215, 236, 255);
+  .card-body{background-color:white;}
     .card-text{font-size: 1.0em;text-align:justify;}
     
     .appimage{
@@ -14,5 +17,4 @@
         height: 200px;
       }
     
-    // .card-footer{background-color: white;}
  }

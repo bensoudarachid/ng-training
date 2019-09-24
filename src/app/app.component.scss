@@ -42,12 +42,12 @@
         filter: blur(2px) sepia(100%);  
     }
     .backgrcolorparallax{
-        // background-color: red;
+        // background-color:blue;
         height:100%;
         width:100%;
         position:fixed;
         z-index: -30;
-        background: linear-gradient(darken($roya-blue,25%), darken($roya-blue,80%)) no-repeat center top fixed;
+        background: linear-gradient(darken(mat-color($accent, 900),30%), darken(mat-color($primary, 900),20%)) no-repeat center top fixed;
         -webkit-background-size:cover;
         -moz-background-size:cover;
         -o-background-size:cover;

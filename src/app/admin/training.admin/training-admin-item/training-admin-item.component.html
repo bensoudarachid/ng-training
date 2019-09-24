@@ -5,7 +5,8 @@
     <!--Card content-->
     <div class="card-body">
         <!--Title-->
-        <h4 class="card-title">TTTT - {{trainingInput.title}}</h4>
+        <h4 class="card-title">{{trainingInput.title}}</h4>
+        <mat-slider value=70></mat-slider>
         <!--Text-->
         <p class="card-text">{{trainingInput.shortDescription}}</p>
     </div>
@@ -13,7 +14,7 @@
     <div class="card-footer">
         <span class="left">{{trainingInput.id}}</span>
         <span class="right">
-            <a placement="top" mdbTooltip="Add to Cart">
+            <!-- <a placement="top" mdbTooltip="Add to Cart">
                 <i class="fa fa-shopping-cart"></i>
             </a>
             <a placement="top" mdbTooltip="Share">
@@ -21,12 +22,10 @@
             </a>
             <a class="active" placement="top" mdbTooltip="Added to Wishlist" container="body">
                 <i class="fa fa-heart"></i>
-            </a>
-            <button mat-raised-button color="primary">Add</button>
-<!-- 
-            <div class="mat-app-background">
-                <mat-slider></mat-slider>
-            </div> -->
+            </a> -->
+            <button mat-mini-fab aria-label="Tshash" color="primary">
+                <mat-icon>edit</mat-icon>
+            </button>
             <!-- <a md-fab class="add-routine-button"><mat-icon>add</mat-icon></a> -->
         </span>
     </div>

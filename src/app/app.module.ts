@@ -24,14 +24,15 @@ import { Actions} from '@ngrx/effects'
 
 import '../scss/animate.css'
 import '../scss/app.scss';
-import { NavComponent } from './nav/nav.component';
-import { NavPublicComponent } from './nav/navpublic.component';
-import { FooterComponent } from './footer/footer.component';
+import { NavComponent } from './shared/components/nav/nav.component';
+import { NavPublicComponent } from './shared/components/nav/navpublic.component';
+import { FooterComponent } from './shared/components/footer/footer.component';
 import { TrainingModule } from './training/training.module';
 import { UiModule } from './shared/components/ui/ui.module';
 import { TrainingItemComponent } from './training/public/training-item/training-item.component';
 import { AuthenticationGuard } from './services/auth/auth.guard';
 import { RegisterComponent } from './register/register.component';
+import { MyOwnCustomMaterialModule } from './shared/modules/appmaterial.module'
 // import { ApiConnection } from './services/api-connection.service';
 
 
@@ -59,6 +60,7 @@ import { RegisterComponent } from './register/register.component';
     // TrainingModule.forRoot(),
     // TrainingModule,
     BrowserModule,
+    MyOwnCustomMaterialModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,

@@ -1,37 +1,37 @@
 // @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 // @import "~@angular/material/prebuilt-themes/indigo-pink.css";
-@import 'apptheme.scss';
+@import 'materialtheme.scss';
 
-$color-primary: "133,149,150";
-$color-primary-dark: $color-primary;
-$color-accent: $color-primary;
-$orangedark: #F07818;
-$orangelight: #F0A830;
-$reddark: #E91818;
-$beige: #d4a281;
-$redlight: #E36937;
-$bluelight: #91CED7;
-$bluedark: #0F6177;
-$braun: #9E5428;
-$greendark: #27AE60;
-$green: #799412;
-$blacklight: #091414;
-$violet: #ab69c6;
-$blue: #22A7F0;
-$magenta: #17bbb0;
-$pink: #ff6ca8;
-$metallic: #8c9aa9;
-$roya-blue: rgba(140, 200, 233, 1.0);
-$roya-blue: #6f9;
-$roya-blue: #FF3333;
-$roya-blue: #69F;
-$roya-blue: #96F;
-$roya-blue: #F96;
-$roya-blue: #91CED7;
-$roya-blue: #81BED7;
-$roya-blue: #81BED7;
-$roya-blue: #69F;
-$roya-blue: #61b6f9;
+// $color-primary: "133,149,150";
+// $color-primary-dark: $color-primary;
+// $color-accent: $color-primary;
+// $orangedark: #F07818;
+// $orangelight: #F0A830;
+// $reddark: #E91818;
+// $beige: #d4a281;
+// $redlight: #E36937;
+// $bluelight: #91CED7;
+// $bluedark: #0F6177;
+// $braun: #9E5428;
+// $greendark: #27AE60;
+// $green: #799412;
+// $blacklight: #091414;
+// $violet: #ab69c6;
+// $blue: #22A7F0;
+// $magenta: #17bbb0;
+// $pink: #ff6ca8;
+// $metallic: #8c9aa9;
+// $roya-blue: rgba(140, 200, 233, 1.0);
+// $roya-blue: #6f9;
+// $roya-blue: #FF3333;
+// $roya-blue: #69F;
+// $roya-blue: #96F;
+// $roya-blue: #F96;
+// $roya-blue: #91CED7;
+// $roya-blue: #81BED7;
+// $roya-blue: #81BED7;
+// $roya-blue: #69F;
+// $roya-blue: #61b6f9;
 
 // $roya-blue:#68c4f7;
 
@@ -85,17 +85,17 @@ $RoyaMainFont: 'Merienda', "Comic Sans MS", cursive, "Lucida Sans Unicode", "Luc
   @return if($minus, -$result, $result);;
 }
 
-@function getMdlColor($string) {
+// @function getMdlColor($string) {
 
-  $index: str-index($string, ",");
-  $r: number(str-slice($string, 1, $index - 1));
-  $str-2: str-slice($string, $index + 1);
-  $index: str-index($str-2, ",");
-  $g: number(str-slice($str-2, 1, $index - 1));
-  $b: number(str-slice($str-2, $index + 1));
+//   $index: str-index($string, ",");
+//   $r: number(str-slice($string, 1, $index - 1));
+//   $str-2: str-slice($string, $index + 1);
+//   $index: str-index($str-2, ",");
+//   $g: number(str-slice($str-2, 1, $index - 1));
+//   $b: number(str-slice($str-2, $index + 1));
 
-  @return rgb($r, $g, $b);
-}
+//   @return rgb($r, $g, $b);
+// }
 
 @mixin textGlitch($name, $intensity, $textColor, $background, $highlightColor1, $highlightColor2, $width, $height) {
   font-family: $RoyaMainFont, Tahoma, sans-serif;
@@ -231,11 +231,16 @@ $RoyaMainFont: 'Merienda', "Comic Sans MS", cursive, "Lucida Sans Unicode", "Luc
   }
 }
 
-$eventcolor0: darken(getMdlColor($color-primary), 10%);
-$eventcolor1: lighten($green, 10%);
-$eventcolor2: $bluelight;
-$eventcolor3: lighten($reddark, 20%); //#FFAC9C
-$eventcolor4: lighten($orangelight, 10%);
+// $eventcolor0: darken(getMdlColor($color-primary), 10%);
+// $eventcolor1: lighten($green, 10%);
+// $eventcolor2: $bluelight;
+// $eventcolor3: lighten($reddark, 20%); //#FFAC9C
+// $eventcolor4: lighten($orangelight, 10%);
+$eventcolor0: black;
+$eventcolor1: black;
+$eventcolor2: black;
+$eventcolor3: black; //#FFAC9C
+$eventcolor4: black;
 
 :export {
   eventcolor0: $eventcolor0;
