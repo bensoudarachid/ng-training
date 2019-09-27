@@ -34,7 +34,7 @@ import { AuthenticationGuard } from './services/auth/auth.guard';
 import { RegisterComponent } from './register/register.component';
 import { MyOwnCustomMaterialModule } from './shared/modules/appmaterial.module'
 // import { ApiConnection } from './services/api-connection.service';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 // const routes: Routes = [
 //   { path: 'trainings', component: TrainingAppComponent },
@@ -73,6 +73,7 @@ import { MyOwnCustomMaterialModule } from './shared/modules/appmaterial.module'
     MDBBootstrapModule.forRoot(),
     // EffectsModule.forFeature(effects),
     EffectsModule.forRoot(effects),
+    FlexLayoutModule,    
   ],
   schemas: [NO_ERRORS_SCHEMA],
   providers: [ AuthenticationGuard,

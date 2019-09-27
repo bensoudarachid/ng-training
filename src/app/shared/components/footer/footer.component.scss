@@ -1,0 +1,12 @@
+@import '../../../../scss/styles.scss';
+@import '~@angular/material/theming';
+
+$color-primary: mat-color($primary, 900);
+$color-accent: mat-color($accent, 800);
+$color-warn: mat-color($warn, 800);
+
+#foot {
+
+    background-color: $color-primary !important;
+
+}

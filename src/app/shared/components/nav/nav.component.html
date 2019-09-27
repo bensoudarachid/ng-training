@@ -1,0 +1,74 @@
+<!-- <mdb-navbar id="bsnavi" SideClass="navbar fixed-top navbar-expand-md navbar-dark darken-3 navi" ngClass="navi" class="navi" [containerInside]="false">
+    <logo class='logo'>
+        <div class="navbar-brand" href="#">
+            <img src='assets/images/logo1.svg' class="d-inline-block align-center" alt='logo' />
+            <span>IT </span>SCHOOL
+        </div>
+    </logo>
+    <links>
+        <ul class="navbar-nav mr-auto">
+            <div *ngIf="!(isAuthenticated$|async); else leftadminnav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item waves-light" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}" mdbRippleRadius>
+                        <a class="nav-link" routerLink="/">Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="" routerLinkActive="active-link" mdbRippleRadius>
+                        <button mat-flat-button color="primary" routerLinkActive="active-link" routerLink="/trainings" class="but">Trainings</button>
+                    </li>
+                </ul>
+            </div>
+            <ng-template #leftadminnav>
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item waves-light" routerLinkActive="active-link" mdbRippleRadius>
+                        <a class="nav-link" routerLink="/admin/trainings">Edit Trainings</a>
+                    </li>
+                </ul>
+            </ng-template>
+        </ul>
+        <div *ngIf="!(isAuthenticated$|async); else rightadminnav">
+            <ul class="navbar-nav mr-right">
+                <li class="nav-item waves-light" mdbRippleRadius>
+                    <a class="nav-link" routerLink="/register">Register</a>
+                </li>
+                <li class="nav-item waves-light" mdbRippleRadius>
+                    <a class="nav-link">
+                        <i (click)="startLogin()" class="fa fa-sign-in" aria-hidden="true"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <ng-template #rightadminnav>
+            <ul class="navbar-nav mr-right">
+                <li>
+                    <button mat-flat-button color="primary" (click)="signOut()" class="but">Out</button>
+                </li>
+            </ul>
+        </ng-template>
+    </links>
+</mdb-navbar> -->
+
+
+<mat-toolbar color="primary">
+
+    <button mat-button routerLink="/">
+    <mat-icon>home</mat-icon> 
+        {{title}}</button>
+
+    <!-- This fills the remaining space of the current row -->
+    <span class="fill-remaining-space"></span>
+    <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+        <button mat-button routerLink="/products">Products</button>
+        <button mat-button routerLink="/dashboard">Dashboard</button>
+    </div>
+    <button mat-button [mat-menu-trigger-for]="menu" fxHide="false" fxHide.gt-sm>
+     <mat-icon>menu</mat-icon>
+    </button>
+
+</mat-toolbar>
+<mat-menu x-position="before" #menu="matMenu">
+    <button mat-menu-item routerLink="/products">Products</button>
+    <button mat-menu-item routerLink="/dashboard">Dashboard</button>
+    <!--<button mat-menu-item>Help</button>-->
+</mat-menu>

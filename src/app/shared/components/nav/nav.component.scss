@@ -1,0 +1,139 @@
+@import '../../../../scss/styles.scss';
+// @import '~@angular/material/theming';
+
+$color-primary: mat-color($primary, 900);
+$color-accent: mat-color($accent, 500);
+$color-warn: mat-color($warn, 700);
+
+
+.fill-remaining-space {
+    /*This fills the remaining space, by using flexbox.  
+   Every toolbar row uses a flexbox row layout. */
+   flex: 1 1 auto;
+ }
+
+// mdb-navbar {
+//     height: 80px;
+//     font-size: 1.15em;
+//     position: fixed;
+//     z-index: 5;
+//     // background-color: red !important;
+//     background-color: $color-primary;
+//     // padding: 0;
+//     // margin: -15px auto 0 auto;
+//     width:100%;
+//     // box-shadow: 0 7px 15px 0 rgba(0, 0, 0, 0.2), 0 8px 15px 0 rgba(0, 0, 0, 0.1);
+//     // -moz-background-clip: padding;
+//     // -webkit-background-clip: padding-box;
+//     // background-clip: padding-box;
+//     // border: 5px solid rgba(darken($roya-blue, 9%), 0.3);
+//     // @include border-radius(0 0 25px 25px);
+//     .but {
+//         // .mat-flat-button{
+//             padding: 0 15px !important;
+//             margin: 0 0px !important;
+//             width: 100% !important;
+//             //background-color: mat-color($primary, 900) !important;
+//             font-size: 16px !important;
+//             min-width: 20px !important;
+//         // }
+//         // margin: -20px -20px -20px -20px !important;
+//     }
+//     .navi{
+//         background-color: red !important;
+//     }    
+//     li{
+//         // height:30px;
+//         margin: 6px 0px -4px 0;
+//         @include border-radius(5px);
+//         //background-color: rgba(white, .08);
+//         // background-color: $color-primary;
+//         &:hover {
+//           background-color: rgba($color-accent, 0.6);
+//         }
+//         a{
+//         //   color: red;
+//           height:30px;
+//           margin: -6px -2px 5px -2px;
+//           &:hover {
+//             color: lighten(lightgray,10%);
+//           }
+//         }
+//     }
+//     // .navbar{
+//     //     // background-color: lighten($roya-blue, 0%);
+//     //     background-color: red !important;
+//     // }
+    
+//     i{
+//         // margin-top:-2px;
+//         font-size:26px;
+//         width:26px;
+//         height:26px;
+//     }
+
+//     .logo {
+//         // height: 104px;
+//         margin: -10px 10px -10px -10px;
+//         padding:0;
+//         // background-color:red;
+        
+//         img{
+//             width: 70px;
+//             margin: 0px 10px 0px 0px;
+//         }
+//         span{
+//             color: mat-color($accent, 300);//lighten($color-accent,20%);
+//       //      color:red;
+//         }
+//         div{
+//             font-size: 25px;
+//         //    color:white;
+//             margin: 0px 10px;
+//         }
+//     }
+//     .active-link{
+//         background-color:$color-accent;//$redlight;
+//         // background: linear-gradient(transparent 1%, $redlight 2%, $redlight 98%, transparent 99%);
+//         // color:red;
+//     }
+//     .loginfetch {
+//       //background: radial-gradient(circle closest-side at 35px 21px, lighten($orangelight, 19%) 0, lighten($orangelight, 19%) 18px, transparent 19px);
+//     }
+
+//     @include transitionAll(.2s);
+
+//     @media (min-width: 768px) {
+//         .but {
+//             width: 100% !important;
+//         }
+//         height: 110px;
+//         li{
+//             // height:30px;
+//             // background-color: rgba(white, .1);
+//             margin: -4px 0px 0 10px;
+//         }    
+//         .logo {
+//             // width: 250px;
+//             // height: 104px;
+//             div{
+//                 font-size: 25px;
+//                 margin: 0px 0px;
+//             }
+            
+//             padding:0;
+            
+//             img{
+//                 width: 100px;
+//                 margin: 0px 10px 0px 0px;
+//             }
+//         }
+  
+//         .loginfetch {
+//          // background: radial-gradient(circle closest-side at 35px 26px, lighten($orangelight, 19%) 0, lighten($orangelight, 19%) 18px, transparent 20px);
+//     //        background: orange;
+//         }
+ 
+//     }
+    
+// }
