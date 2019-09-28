@@ -23,7 +23,7 @@ import * as LoginActions from '../../../store/actions/auth.actions'
 
 export class NavComponent implements OnInit {
   isAuthenticated$:Observable<boolean>
-  
+  // title="Abbas"  
   @Output()
   loginEvent = new EventEmitter<string>();
 

@@ -21,7 +21,7 @@ export class TrainingsService {
     // return this.http.get('https://jsonplaceholder.typicode.com/posts')
     //   .map(res => res.json())
     // return this.http.get('http://abbaslearn.schoolapi.royasoftware.com:8080/api/trainings/123')
-    return this.http.get(ApiConnection.API_ENDPOINT+'/api/trainings/123')
+    return this.http.get<Training[]>(ApiConnection.API_ENDPOINT+'/api/trainings/123')
     .pipe(catchError((error:any)=>Observable.throw(error.json())  ))
   }
 }

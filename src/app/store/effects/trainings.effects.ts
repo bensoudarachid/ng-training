@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core'
 
-import {Effect, Actions} from '@ngrx/effects'
+import {Effect, Actions, ofType} from '@ngrx/effects'
 import {map,switchMap,catchError} from 'rxjs/operators'
 import {of} from 'rxjs/observable/of'
 
@@ -13,8 +13,8 @@ import { TrainingsService } from '../../services/trainings/trainings.service';
 export class TrainingEffects{
     constructor(private actions$: Actions,private trainingsService: TrainingsService){}
     @Effect()
-    loadTrainings$=this.actions$.ofType(trainingActions.LOAD_TRAININGS)
-        .pipe(
+    loadTrainings$=this.actions$
+        .pipe(ofType(trainingActions.LOAD_TRAININGS),
             switchMap(()=>{
                 console.log('training effect called')
                 return this.trainingsService.getTrainings().pipe(

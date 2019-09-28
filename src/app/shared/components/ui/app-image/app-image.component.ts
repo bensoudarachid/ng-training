@@ -15,7 +15,7 @@ declare var $: any;
 export class AppImageComponent implements OnInit, AfterViewInit {
   @Input() imgid: string
   @Input() api: string
-  @ViewChild("appimage") image: ElementRef;
+  @ViewChild("appimage", {static: false}) image: ElementRef;
 
   // datasrc: string
   errors = 0

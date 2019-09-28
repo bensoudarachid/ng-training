@@ -20,8 +20,8 @@ export class AppComponent implements OnInit, AfterViewInit {
   email: string
   appError: Observable<string>
   appErrorBuffer: string
-  @ViewChild('loginform') loginForm;
-  @ViewChild('errordlg') errorDlg;
+  @ViewChild('loginform', {static: false}) loginForm;
+  @ViewChild('errordlg', {static: false}) errorDlg;
 
   constructor(private store: Store<AppState>, private cookiesService: CookieService) {
     // this.appError = this.store.select(state => state.appReducer.get('errormessage'))

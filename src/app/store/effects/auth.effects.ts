@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 
-import { Effect, Actions } from '@ngrx/effects'
+import { Effect, Actions, ofType } from '@ngrx/effects'
 import { map, switchMap, catchError, timeout, finalize } from 'rxjs/operators'
 import { of } from 'rxjs/observable/of'
 import { Store } from '@ngrx/store'
@@ -27,8 +27,9 @@ export class AuthenticationEffects {
         private store: Store<AppState>,
         private router: Router) { }
     @Effect()
-    loginRequest$ = this.actions$.ofType(authActions.LOGIN_REQUEST)
+    loginRequest$ = this.actions$
         .pipe(
+            ofType(authActions.LOGIN_REQUEST),
             switchMap((action: authActions.LoginRequest) => {
                 // console.log('Auth effect login request')
                 return this.authService.login(action.email, action.password).pipe(
@@ -49,8 +50,8 @@ export class AuthenticationEffects {
             })
         )
     @Effect()
-    logoutRequest$ = this.actions$.ofType(authActions.LOGOUT_REQUEST)
-        .pipe(
+    logoutRequest$ = this.actions$
+        .pipe(ofType(authActions.LOGOUT_REQUEST),
             switchMap((action: authActions.LogoutRequest) => {
                 console.log('Auth effect login request')
                 let jwtToken = this.cookiesService.get('jwt')
@@ -68,8 +69,8 @@ export class AuthenticationEffects {
             })
         )
         @Effect()
-        refreshRequest$ = this.actions$.ofType(authActions.REFRESH_REQUEST)
-            .pipe(
+        refreshRequest$ = this.actions$
+            .pipe(ofType(authActions.REFRESH_REQUEST),
                 switchMap((action: authActions.RefreshRequest) => {
                 //     if( this.refreshRunning )
                 //     return of({type:"NO_ACTION"});

@@ -49,26 +49,56 @@
     </links>
 </mdb-navbar> -->
 
-
 <mat-toolbar color="primary">
-
+    <logo class='logo'>
+        <div class="navbar-brand" href="#">
+            <img src='assets/images/logo1.svg' class="d-inline-block align-center" alt='logo' />
+            <span>IT </span>SCHOOL
+        </div>
+    </logo>
+<!--         
     <button mat-button routerLink="/">
-    <mat-icon>home</mat-icon> 
-        {{title}}</button>
+        <mat-icon>home</mat-icon> 
+    </button> -->
 
     <!-- This fills the remaining space of the current row -->
-    <span class="fill-remaining-space"></span>
+    <!-- <span class="fill-remaining-space"></span> -->
     <div fxLayout="row" fxShow="false" fxShow.gt-sm>
-        <button mat-button routerLink="/products">Products</button>
-        <button mat-button routerLink="/dashboard">Dashboard</button>
+        <div *ngIf="!(isAuthenticated$|async); else leftadminnav">
+            <button mat-button routerLink="/">Home</button>
+            <button mat-button routerLink="/trainings">Trainings</button>
+        </div>
+        <ng-template #leftadminnav>
+            <button mat-button routerLink="/admin/trainings">Edit Trainings</button>
+        </ng-template>
     </div>
+
+    <span class="fill-remaining-space"></span>
+
+    <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+        <div *ngIf="!(isAuthenticated$|async); else rightadminnav">
+            <button mat-button routerLink="/register">Register</button>
+            <button mat-button (click)="startLogin()">Login</button>
+        </div>
+        <ng-template #rightadminnav>
+            <button mat-button (click)="signOut()">Out</button>
+        </ng-template>
+    </div>
+
     <button mat-button [mat-menu-trigger-for]="menu" fxHide="false" fxHide.gt-sm>
-     <mat-icon>menu</mat-icon>
+    <mat-icon>menu</mat-icon>
     </button>
 
 </mat-toolbar>
 <mat-menu x-position="before" #menu="matMenu">
-    <button mat-menu-item routerLink="/products">Products</button>
-    <button mat-menu-item routerLink="/dashboard">Dashboard</button>
-    <!--<button mat-menu-item>Help</button>-->
+    <div *ngIf="!(isAuthenticated$|async); else notauthmenu">
+        <button mat-button routerLink="/">Home</button>
+        <button mat-button routerLink="/trainings">Trainings</button>
+        <button mat-button routerLink="/register">Register</button>
+        <button mat-button (click)="startLogin()">Login</button>
+    </div>
+    <ng-template #notauthmenu>
+        <button mat-button routerLink="/admin/trainings">Edit Trainings</button>
+        <button mat-button (click)="signOut()">Out</button>
+    </ng-template>    <!--<button mat-menu-item>Help</button>-->
 </mat-menu>

@@ -12,7 +12,7 @@ const routes: Routes = [
   // { path: 'trainings', component: TrainingAppComponent },
   { path: '', component: HomeComponent },
   { path: 'trainings',
-    loadChildren: 'app/training/training.module#TrainingModule'
+    loadChildren: () => import('app/training/training.module').then(m => m.TrainingModule)
     // children:[
     //   {
     //     path: '', component: TrainingAppComponent
@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'admin/trainings',
     canActivate:[AuthenticationGuard],
-    loadChildren: 'app/admin/training.admin/training.admin.module#TrainingAdminModule'
+    loadChildren: () => import('app/admin/training.admin/training.admin.module').then(m => m.TrainingAdminModule)
 
   }
 ]
