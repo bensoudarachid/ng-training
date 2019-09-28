@@ -1,4 +1,6 @@
 @import '../scss/app.scss';
+
+  
 #app{
     height:100%;
     display: flex;flex-direction: column;
@@ -17,7 +19,6 @@
     letter-spacing: -0.75px;
     // margin-top: -10px;
 
-    
     // background: url('../assets/images/dna.png') no-repeat 0 -300px fixed;
     .imgparallax{
         // background-color: red;

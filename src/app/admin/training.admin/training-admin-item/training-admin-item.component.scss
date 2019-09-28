@@ -1,4 +1,6 @@
-@import '../../../../scss/styles.scss';
+// @import '../../../../scss/styles.scss';
+@import '../../../../scss/app.scss';
+
 
 .card{
     // background-color:rgb(215, 236, 255);
@@ -6,7 +8,7 @@
 
     .card-body{background-color:white;}
     .card-text{font-size: 1.0em;text-align:justify;}
-    
+  
     .appimage{
       // background-color:yellow;
       height: 100px;

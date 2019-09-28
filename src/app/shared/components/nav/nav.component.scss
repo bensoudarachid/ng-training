@@ -1,12 +1,31 @@
-@import '../../../../scss/styles.scss';
+@import '../../../../scss/app.scss';
 // @import '~@angular/material/theming';
 
 $color-primary: mat-color($primary, 900);
+$color-primary-active: mat-color($primary, 800);
 $color-accent: mat-color($accent, 500);
 $color-warn: mat-color($warn, 700);
 
 
-
+.loginfetch {
+    box-shadow: inset 0px 0px 0px 10px rgba($color-warn,0.8);
+    box-sizing: border-box;
+    @include transitionAll(.4s);
+}
+.logindone {
+    box-shadow: inset 0px 0px 0px 0px rgba($color-warn,0.8);
+    @include transitionAll(.6s);
+}
+.loginfetchhidden{
+    visibility: hidden;
+    opacity: 0;
+    @include transitionAll(.3s);
+}
+.loginfetchvisible{
+    visibility: visible;
+    opacity: 1;
+    @include transitionAll(.3s);
+}
 mat-toolbar {
     .fill-remaining-space {
       /*This fills the remaining space, by using flexbox.  
@@ -92,14 +111,11 @@ mat-toolbar {
             margin: 0px 10px;
         }
     }
-    // .active-link{
-    //     background-color:$color-accent;//$redlight;
-    //     // background: linear-gradient(transparent 1%, $redlight 2%, $redlight 98%, transparent 99%);
-    //     // color:red;
-    // }
-    // .loginfetch {
-    //   //background: radial-gradient(circle closest-side at 35px 21px, lighten($orangelight, 19%) 0, lighten($orangelight, 19%) 18px, transparent 19px);
-    // }
+    .active-link{
+        background-color:$color-primary-active;//$redlight;
+        // background: linear-gradient(transparent 1%, $redlight 2%, $redlight 98%, transparent 99%);
+        // color:red;
+    }
 
     @include transitionAll(.2s);
 

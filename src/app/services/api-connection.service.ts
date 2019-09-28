@@ -14,5 +14,5 @@ export class ApiConnection {
   // public static API_ENDPOINT='http://trainingspringboot-multitenant-training.a3c1.starter-us-west-1.openshiftapps.com'
   // public static API_ENDPOINT = 'http://'+window.location.hostname.replace("school.", "schoolapi.")
   //public static apiHostname = window.location.hostname.replace("school.", "schoolapi.");
-  public static API_ENDPOINT = environment.production?'http://'+window.location.hostname.replace("school.", "schoolapi."):'http://abbaslearn.schoolapi.royasoftware.com:8080'
+  public static API_ENDPOINT = environment.production?'http://'+window.location.hostname.replace("school.", "schoolapi.")+':'+window.location.port:'http://abbaslearn.schoolapi.royasoftware.com:8080'
 }

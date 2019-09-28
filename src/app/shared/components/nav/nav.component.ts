@@ -23,6 +23,8 @@ import * as LoginActions from '../../../store/actions/auth.actions'
 
 export class NavComponent implements OnInit {
   isAuthenticated$:Observable<boolean>
+  isFetching$:Observable<boolean>
+  isFetching:boolean
   // title="Abbas"  
   @Output()
   loginEvent = new EventEmitter<string>();
@@ -30,6 +32,14 @@ export class NavComponent implements OnInit {
   constructor( private cookieService: CookieService, private store: Store<AppState> ) { 
     // console.log('constructor isAuthenticated '+this.isAuthenticated$)
     this.isAuthenticated$=this.store.select(state => state.authReducer.isAuthenticated)
+    this.isFetching$=this.store.select(state => state.authReducer.isFetching)
+    this.isFetching$.subscribe(
+      fetchBool => {
+        this.isFetching = fetchBool; 
+        console.info('is fetching ' + fetchBool)},
+      err => {
+          console.log('error ' + err)
+      })
   }
 
   ngOnInit() {

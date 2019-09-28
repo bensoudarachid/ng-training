@@ -68,3 +68,11 @@ $backgroundimg: '../images/wallpaper-1.jpg';
 .bgr {
   background-color: red !important;
 }
+
+button{
+  outline: none;    
+  &:hover {
+    // background-color: lighten(mat-color($primary, 900),15%) !important;//rgba(mat-color($primary, 800), 0.6);
+    background-color: mat-color($primary, 800) !important;//rgba(mat-color($primary, 800), 0.6);
+  }
+}
