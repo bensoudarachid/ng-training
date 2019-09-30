@@ -93,6 +93,16 @@ export function authReducer(auth=initAuthState, action:Action) {
             // auth = auth.remove('loginrequest')
             return auth
             
+        case authActions.LOGOUT_REQUEST:
+            console.log('Store reducer. logout request')
+            auth = {...auth, isFetching:true}
+            // auth = auth.remove('loginMessage')
+            // auth = {...auth, loginMessage:undefined}
+            // auth = auth.remove('loginProgress')
+            // auth = auth.set('isAuthenticated', false)
+            auth = {...auth, isAuthenticated:true}
+            return auth
+    
         case authActions.LOGOUT_SUCCESS:
             // auth = auth.set('isFetching', false)
             auth = {...auth, isFetching:false}
