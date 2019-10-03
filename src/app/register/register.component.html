@@ -9,48 +9,108 @@
   <input type="submit" value="Register" [disabled]='!rForm.valid' >
 </form> -->
 
-
 <!-- Register form -->
 <section class="section" style="width:95%;margin: 0 auto;">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12 mb-r">
+      <form
+        id="registrationform"
+        [formGroup]="rForm"
+        (ngSubmit)="submitRegistration(rForm.value)"
+      >
+        <p class="h5 text-center mb-4">Sign up</p>
 
-<div class="row">
-  <div class="col-sm-12 col-md-12 col-lg-12 mb-r">
+        <div class="md-form">
+          <i class="fa fa-user prefix grey-text"></i>
+          <input
+            type="text"
+            formControlName="userName"
+            [(ngModel)]="userName"
+            id="rForm-userName"
+            class="form-control"
+            mdbInputDirective
+          />
+          <label for="orangeForm-name">Your name</label>
+          <!-- <app-control-messages
+            [control]="rForm.get('userName')"
+          ></app-control-messages> -->
+        </div>
+        <!-- <div class="md-form">
+          <i class="fa fa-envelope prefix grey-text"></i>
+          <input
+            type="text"
+            formControlName="email"
+            [(ngModel)]="email"
+            id="orangeForm-email"
+            class="form-control"
+            mdbInputDirective
+          />
+          <label for="orangeForm-email">Your email</label>
+        </div> -->
+        <!-- <mat-form-field appearance="legacy">
+          <mat-label>Legacy form field</mat-label>
+          <input matInput placeholder="Placeholder" />
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+          <mat-hint>Hint</mat-hint>
+        </mat-form-field> -->
+        <!-- id="orangeForm-email" -->
 
-    <form id="registrationform" [formGroup]="rForm" (ngSubmit)='submitRegistration(rForm.value)'>
-      <p class="h5 text-center mb-4">Sign up</p>
+        <mat-form-field>
+          <input
+            matInput
+            formControlName="email"
+            [(ngModel)]="email"
+            class="form-control"
+            placeholder="Email"
+            (ngModelChange)="onChange($event, 'email')"
+          />
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+          <mat-hint align="end">Not more then 20 characters long.</mat-hint>
+          <mat-error *ngIf="hasError('email', 'required')"
+            >Name is required</mat-error
+          >
+          <mat-error *ngIf="hasError('email', 'maxlength')"
+            >You have more than 20 characters</mat-error
+          >
+        </mat-form-field>
 
-      <div class="md-form">
-        <i class="fa fa-user prefix grey-text"></i>
-        <input type="text" formControlName="userName" id="rForm-userName" class="form-control" mdbInputDirective>
-        <label for="orangeForm-name">Your name</label>
-      </div>
-      <div class="md-form">
-        <i class="fa fa-envelope prefix grey-text"></i>
-        <input type="text" formControlName="email" id="orangeForm-email" class="form-control" mdbInputDirective>
-        <label for="orangeForm-email">Your email</label>
-      </div>
+        <div class="md-form">
+          <i class="fa fa-lock prefix grey-text"></i>
+          <input
+            type="password"
+            formControlName="password"
+            id="orangeForm-password"
+            class="form-control"
+            mdbInputDirective
+          />
+          <label for="orangeForm-pass">Your password</label>
+        </div>
 
-      <div class="md-form">
-        <i class="fa fa-lock prefix grey-text"></i>
-        <input type="password" formControlName="password" id="orangeForm-password" class="form-control" mdbInputDirective>
-        <label for="orangeForm-pass">Your password</label>
-      </div>
+        <div class="md-form">
+          <i class="fa fa-lock prefix grey-text"></i>
+          <input
+            type="password"
+            formControlName="passwordCheck"
+            id="orangeForm-passwordCheck"
+            class="form-control"
+            mdbInputDirective
+          />
+          <label for="orangeForm-pass">Confirm password</label>
+        </div>
 
-      <div class="md-form">
-        <i class="fa fa-lock prefix grey-text"></i>
-        <input type="password" formControlName="passwordCheck" id="orangeForm-passwordCheck" class="form-control" mdbInputDirective>
-        <label for="orangeForm-pass">Confirm password</label>
-      </div>
-
-      <div class="text-center">
-        <input type="submit" [disabled]='!rForm.valid' class="btn btn-deep-orange waves-light" value="Sign up" mdbWavesEffect>
-      </div>
-    </form>
-    <!-- Register form -->
-
+        <div class="text-center">
+          <input
+            type="submit"
+            [disabled]="!rForm.valid"
+            class="btn btn-deep-orange waves-light"
+            value="Sign up"
+            mdbWavesEffect
+          />
+        </div>
+      </form>
+      <!-- Register form -->
+    </div>
   </div>
-</div>
-<!--/row -->
-
+  <!--/row -->
 </section>
 <!--/container -->

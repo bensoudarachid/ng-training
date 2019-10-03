@@ -1,46 +1,46 @@
 import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core'
-import { FormsModule,ReactiveFormsModule } from '@angular/forms'
-import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 // import { HttpModule } from '@angular/http'
 // import { HTTP_INTERCEPTORS } from '@angular/common/http'
 import { RouterModule, Routes, RouterLinkActive } from '@angular/router'
 import { CookieService } from 'ngx-cookie-service'
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { MDBBootstrapModule } from 'angular-bootstrap-md'
 import { AppHttpInterceptor } from './services/apphttp.interceptor'
 import { StoreModule } from '@ngrx/store'
 import { EffectsModule } from '@ngrx/effects'
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 // import { TrainingAppComponent } from './training/public/trainingapp/trainingapp.component'
 import { AuthService } from './services/auth/auth.service'
 import { HomeComponent } from './home/home.component'
-import * as fromServices  from './services'
+import * as fromServices from './services'
 
-import { reducers,effects } from './store'
-import { Actions} from '@ngrx/effects'
+import { reducers, effects } from './store'
+import { Actions } from '@ngrx/effects'
 
 import '../scss/animate.css'
-import '../scss/app.scss';
-import { NavComponent } from './shared/components/nav/nav.component';
-import { NavPublicComponent } from './shared/components/nav/navpublic.component';
-import { FooterComponent } from './shared/components/footer/footer.component';
-import { TrainingModule } from './training/training.module';
-import { UiModule } from './shared/components/ui/ui.module';
-import { TrainingItemComponent } from './training/public/training-item/training-item.component';
-import { AuthenticationGuard } from './services/auth/auth.guard';
-import { RegisterComponent } from './register/register.component';
+import '../scss/app.scss'
+import { NavComponent } from './shared/components/nav/nav.component'
+import { NavPublicComponent } from './shared/components/nav/navpublic.component'
+import { FooterComponent } from './shared/components/footer/footer.component'
+import { TrainingModule } from './training/training.module'
+import { UiModule } from './shared/components/ui/ui.module'
+import { TrainingItemComponent } from './training/public/training-item/training-item.component'
+import { AuthenticationGuard } from './services/auth/auth.guard'
+import { RegisterComponent } from './register/register.component'
 import { MyOwnCustomMaterialModule } from './shared/modules/appmaterial.module'
 // import { ApiConnection } from './services/api-connection.service';
-import { FlexLayoutModule } from '@angular/flex-layout';
+import { FlexLayoutModule } from '@angular/flex-layout'
+import { CommonModule } from '@angular/common'
 
 // const routes: Routes = [
 //   { path: 'trainings', component: TrainingAppComponent },
 //   { path: '', component: HomeComponent }
 // ]
-
 
 @NgModule({
   declarations: [
@@ -51,7 +51,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     NavComponent,
     NavPublicComponent,
     FooterComponent,
-    RegisterComponent
+    RegisterComponent,
     // AppImageComponent,
     // routingComponents
   ],
@@ -59,6 +59,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     AppRoutingModule,
     // TrainingModule.forRoot(),
     // TrainingModule,
+    CommonModule,
+    UiModule,
     BrowserModule,
     MyOwnCustomMaterialModule,
     BrowserAnimationsModule,
@@ -73,15 +75,18 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MDBBootstrapModule.forRoot(),
     // EffectsModule.forFeature(effects),
     EffectsModule.forRoot(effects),
-    FlexLayoutModule,    
+    FlexLayoutModule,
   ],
   schemas: [NO_ERRORS_SCHEMA],
-  providers: [ AuthenticationGuard,
+  providers: [
+    AuthenticationGuard,
     {
-    provide: HTTP_INTERCEPTORS,
-    useClass: AppHttpInterceptor,
-    multi: true
-    },...fromServices.services],
-  bootstrap: [AppComponent]
+      provide: HTTP_INTERCEPTORS,
+      useClass: AppHttpInterceptor,
+      multi: true,
+    },
+    ...fromServices.services,
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

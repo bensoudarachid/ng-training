@@ -5,4 +5,4 @@ import { CookieService } from 'ngx-cookie-service'
 export const services = [AuthService,CookieService] //TrainingsService
 
 export * from './auth/auth.service'
-// export * from './trainings/trainings.service'
+export * from './validation/validation.service'

@@ -1,20 +1,24 @@
 <div class="card">
-    <!--Card image-->
-    <app-image api={{api}} imgid="{{trainingid}}" class="appimage"></app-image>
-    <!-- <img class="img-fluid dataimg" src="assets/images/Blog-Deploying.svg" alt="Card image cap"> -->
-    <!--Card content-->
-    <div class="card-body">
-        <!--Title-->
-        <h4 class="card-title">{{trainingInput.title}}</h4>
-        <mat-slider value=70></mat-slider>
-        <!--Text-->
-        <p class="card-text">{{trainingInput.shortDescription}}</p>
-    </div>
-    <!--Card footer-->
-    <div class="card-footer">
-        <span class="left">{{trainingInput.id}}</span>
-        <span class="right">
-            <!-- <a placement="top" mdbTooltip="Add to Cart">
+  <!--Card image-->
+  <app-image
+    api="{{ api }}"
+    imgid="{{ trainingid }}"
+    class="appimage"
+  ></app-image>
+  <!-- <img class="img-fluid dataimg" src="assets/images/Blog-Deploying.svg" alt="Card image cap"> -->
+  <!--Card content-->
+  <div class="card-body">
+    <!--Title-->
+    <h4 class="card-title">{{ trainingInput.title }}</h4>
+    <mat-slider value="70"></mat-slider>
+    <!--Text-->
+    <p class="card-text">{{ trainingInput.shortDescription }}</p>
+  </div>
+  <!--Card footer-->
+  <div class="card-footer">
+    <span class="left">{{ trainingInput.id }}</span>
+    <span class="right">
+      <!-- <a placement="top" mdbTooltip="Add to Cart">
                 <i class="fa fa-shopping-cart"></i>
             </a>
             <a placement="top" mdbTooltip="Share">
@@ -23,10 +27,10 @@
             <a class="active" placement="top" mdbTooltip="Added to Wishlist" container="body">
                 <i class="fa fa-heart"></i>
             </a> -->
-            <button mat-mini-fab aria-label="Tshash" color="primary">
-                <mat-icon>edit</mat-icon>
-            </button>
-            <!-- <a md-fab class="add-routine-button"><mat-icon>add</mat-icon></a> -->
-        </span>
-    </div>
+      <button mat-mini-fab aria-label="Tshash" color="primary">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <!-- <a md-fab class="add-routine-button"><mat-icon>add</mat-icon></a> -->
+    </span>
+  </div>
 </div>
