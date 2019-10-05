@@ -1,5 +1,7 @@
+import { services } from './../services/index'
 import { Component, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { MyErrorStateMatcher } from '@app/services/validation/myerrorstatematcher'
 
 @Component({
   selector: 'app-register',
@@ -13,6 +15,7 @@ export class RegisterComponent implements OnInit {
   userName: string = 'Tschash'
   password: string
   passwordCheck: string
+  matcher = new MyErrorStateMatcher()
   constructor(private formBuilder: FormBuilder) {
     this.rForm = formBuilder.group({
       userName: [
@@ -24,38 +27,32 @@ export class RegisterComponent implements OnInit {
         Validators.compose([
           Validators.required,
           Validators.email,
-          Validators.maxLength(20),
+          Validators.maxLength(40),
         ]),
       ],
       password: [
         null,
         Validators.compose([Validators.required, Validators.minLength(8)]),
       ],
-      passwordCheck: [
-        null,
-        Validators.compose([Validators.required, Validators.minLength(8)]),
-      ],
+      passwordCheck: [null, Validators.compose([Validators.minLength(8)])],
     })
   }
 
   public hasError = (controlName: string, errorName: string) => {
     console.log(
-      'controlName ' +
-        controlName +
-        ' ' +
-        this.rForm.controls[controlName].hasError(errorName)
+      'email error ' + this.rForm.controls[controlName].hasError(errorName)
     )
     return this.rForm.controls[controlName].hasError(errorName)
   }
-  onChange($event, controlName) {
-    // this.password = $event;
-    if (!this.rForm.controls[controlName].touched) {
-      this.rForm.controls[controlName].markAsTouched()
-    }
-  }
+  // onChange($event, controlName) {
+  //   // this.password = $event;
+  //   if (!this.rForm.controls[controlName].touched) {
+  //     this.rForm.controls[controlName].markAsTouched()
+  //   }
+  // }
   ngOnInit() {
-    this.email = 'abibis@gmx.de'
-    this.userName = 'Tschash'
+    this.email = ''
+    this.userName = ''
   }
 
   submitRegistration(registration) {

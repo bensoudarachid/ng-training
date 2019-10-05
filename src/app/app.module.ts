@@ -36,6 +36,10 @@ import { MyOwnCustomMaterialModule } from './shared/modules/appmaterial.module'
 // import { ApiConnection } from './services/api-connection.service';
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { CommonModule } from '@angular/common'
+import {
+  ShowOnDirtyErrorStateMatcher,
+  ErrorStateMatcher,
+} from '@angular/material'
 
 // const routes: Routes = [
 //   { path: 'trainings', component: TrainingAppComponent },
@@ -85,6 +89,8 @@ import { CommonModule } from '@angular/common'
       useClass: AppHttpInterceptor,
       multi: true,
     },
+    //cause input errors to show when the input is dirty and invalid
+    { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },
     ...fromServices.services,
   ],
   bootstrap: [AppComponent],

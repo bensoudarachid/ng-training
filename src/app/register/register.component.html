@@ -19,74 +19,91 @@
         (ngSubmit)="submitRegistration(rForm.value)"
       >
         <p class="h5 text-center mb-4">Sign up</p>
+        <!-- Grid row -->
+        <div class="form-row">
+          <!-- Material input -->
+          <div class="form-group col-md-6">
+            <mat-form-field class="input-width">
+              <input
+                matInput
+                formControlName="userName"
+                [(ngModel)]="userName"
+                placeholder="User name"
+                [errorStateMatcher]="matcher"
+              />
+              <mat-hint align="end">Not more then 20 characters long.</mat-hint>
+              <mat-error *ngIf="hasError('email', 'required')"
+                >Name is required</mat-error
+              >
+              <mat-error *ngIf="hasError('email', 'maxlength')"
+                >You have more than 20 characters</mat-error
+              >
+            </mat-form-field>
+          </div>
 
-        <div class="md-form">
-          <i class="fa fa-user prefix grey-text"></i>
-          <input
-            type="text"
-            formControlName="userName"
-            [(ngModel)]="userName"
-            id="rForm-userName"
-            class="form-control"
-            mdbInputDirective
-          />
-          <label for="orangeForm-name">Your name</label>
-          <!-- <app-control-messages
-            [control]="rForm.get('userName')"
-          ></app-control-messages> -->
+          <!-- Grid column -->
+          <!-- class="form-control" -->
+          <div class="form-group col-md-6">
+            <mat-form-field class="input-width">
+              <input
+                matInput
+                formControlName="email"
+                [(ngModel)]="email"
+                placeholder="Email"
+                [errorStateMatcher]="matcher"
+              />
+              <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+              <mat-error *ngIf="hasError('email', 'required')"
+                >Email is required</mat-error
+              >
+              <!-- <mat-error *ngIf="hasError('email', 'maxlength')"
+                >You have more than 20 characters</mat-error
+              > -->
+            </mat-form-field>
+          </div>
+
+          <!-- Grid column -->
+          <div class="form-group col-md-6">
+            <mat-form-field class="input-width">
+              <input
+                matInput
+                type="password"
+                formControlName="password"
+                [(ngModel)]="password"
+                placeholder="Password"
+                [errorStateMatcher]="matcher"
+              />
+              <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+              <mat-error *ngIf="hasError('password', 'required')"
+                >Password is required</mat-error
+              >
+              <!-- <mat-error *ngIf="hasError('email', 'maxlength')"
+                >You have more than 20 characters</mat-error
+              > -->
+            </mat-form-field>
+          </div>
+          <div class="form-group col-md-6">
+            <mat-form-field class="input-width">
+              <input
+                matInput
+                type="password"
+                formControlName="passwordCheck"
+                [(ngModel)]="passwordCheck"
+                placeholder="Confirm password"
+                [errorStateMatcher]="matcher"
+              />
+              <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+              <mat-error *ngIf="hasError('passwordCheck', 'required')"
+                >Password is required</mat-error
+              >
+              <!-- <mat-error *ngIf="hasError('email', 'maxlength')"
+                >You have more than 20 characters</mat-error
+              > -->
+            </mat-form-field>
+          </div>
         </div>
+
         <!-- <div class="md-form">
-          <i class="fa fa-envelope prefix grey-text"></i>
-          <input
-            type="text"
-            formControlName="email"
-            [(ngModel)]="email"
-            id="orangeForm-email"
-            class="form-control"
-            mdbInputDirective
-          />
-          <label for="orangeForm-email">Your email</label>
-        </div> -->
-        <!-- <mat-form-field appearance="legacy">
-          <mat-label>Legacy form field</mat-label>
-          <input matInput placeholder="Placeholder" />
-          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-          <mat-hint>Hint</mat-hint>
-        </mat-form-field> -->
-        <!-- id="orangeForm-email" -->
-
-        <mat-form-field>
-          <input
-            matInput
-            formControlName="email"
-            [(ngModel)]="email"
-            class="form-control"
-            placeholder="Email"
-            (ngModelChange)="onChange($event, 'email')"
-          />
-          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-          <mat-hint align="end">Not more then 20 characters long.</mat-hint>
-          <mat-error *ngIf="hasError('email', 'required')"
-            >Name is required</mat-error
-          >
-          <mat-error *ngIf="hasError('email', 'maxlength')"
-            >You have more than 20 characters</mat-error
-          >
-        </mat-form-field>
-
-        <div class="md-form">
-          <i class="fa fa-lock prefix grey-text"></i>
-          <input
-            type="password"
-            formControlName="password"
-            id="orangeForm-password"
-            class="form-control"
-            mdbInputDirective
-          />
-          <label for="orangeForm-pass">Your password</label>
-        </div>
-
-        <div class="md-form">
           <i class="fa fa-lock prefix grey-text"></i>
           <input
             type="password"
@@ -96,7 +113,7 @@
             mdbInputDirective
           />
           <label for="orangeForm-pass">Confirm password</label>
-        </div>
+        </div> -->
 
         <div class="text-center">
           <input
