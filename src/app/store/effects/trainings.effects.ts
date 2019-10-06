@@ -1,26 +1,39 @@
-import {Injectable} from '@angular/core'
+import { Injectable } from '@angular/core'
 
-import {Effect, Actions, ofType} from '@ngrx/effects'
-import {map,switchMap,catchError} from 'rxjs/operators'
-import {of} from 'rxjs/observable/of'
+import { Effect, Actions, ofType } from '@ngrx/effects'
+import { map, switchMap, catchError } from 'rxjs/operators'
+import { of } from 'rxjs/observable/of'
 
 import * as trainingActions from '../actions/training.actions'
-import { TrainingsService } from '../../services/trainings/trainings.service';
+import { TrainingsService } from '../../services/trainings/trainings.service'
 // import * as fromServices from '../../services'
 
 @Injectable()
-
-export class TrainingEffects{
-    constructor(private actions$: Actions,private trainingsService: TrainingsService){}
-    @Effect()
-    loadTrainings$=this.actions$
-        .pipe(ofType(trainingActions.LOAD_TRAININGS),
-            switchMap(()=>{
-                console.log('training effect called')
-                return this.trainingsService.getTrainings().pipe(
-                    map(trainings=> new trainingActions.LoadTrainingsSuccess(trainings)),
-                    catchError(error=>of(new trainingActions.LoadTrainingsFail(error)))
-                )
-            })
-        )
+export class TrainingEffects {
+  constructor(
+    private actions$: Actions,
+    private trainingsService: TrainingsService
+  ) {}
+  @Effect()
+  loadTrainings$ = this.actions$.pipe(
+    ofType(trainingActions.LOAD_TRAININGS),
+    switchMap(() => {
+      console.log('get trainings effect called')
+      return this.trainingsService.getTrainings().pipe(
+        map(trainings => new trainingActions.LoadTrainingsSuccess(trainings)),
+        catchError(error => of(new trainingActions.LoadTrainingsFail(error)))
+      )
+    })
+  )
+  @Effect()
+  loadTrainings = this.actions$.pipe(
+    ofType(trainingActions.LOAD_TRAINING),
+    switchMap((action: trainingActions.LoadTraining) => {
+      console.log('get training effect called id ' + action.id)
+      return this.trainingsService.getTraining(action.id).pipe(
+        map(training => new trainingActions.LoadTrainingSuccess(training)),
+        catchError(error => of(new trainingActions.LoadTrainingFail(error)))
+      )
+    })
+  )
 }

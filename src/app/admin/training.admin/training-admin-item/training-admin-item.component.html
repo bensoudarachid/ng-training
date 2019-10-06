@@ -27,9 +27,15 @@
             <a class="active" placement="top" mdbTooltip="Added to Wishlist" container="body">
                 <i class="fa fa-heart"></i>
             </a> -->
-      <button mat-mini-fab aria-label="Tshash" color="primary">
+      <button
+        mat-mini-fab
+        aria-label="Tshash"
+        color="primary"
+        [routerLink]="['training', trainingInput.id]"
+      >
         <mat-icon>edit</mat-icon>
       </button>
+      <a [routerLink]="['training', trainingInput.id]">details</a>
       <!-- <a md-fab class="add-routine-button"><mat-icon>add</mat-icon></a> -->
     </span>
   </div>

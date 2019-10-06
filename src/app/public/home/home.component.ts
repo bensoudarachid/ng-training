@@ -1,24 +1,16 @@
 import { Component, OnInit } from '@angular/core'
 
-declare var $: any;
+declare var $: any
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
-    // componentHandler.upgradeDom()
-    // $('.imgwrap').each(function (i, el) {
-    //   var elm = $(el)
-    //   var imgbg = elm.find('.imgbg')
-    //   var img = elm.find('.dataimg')
-    //   var imgSpinner = elm.find('.mdl-spinner')
-
     //   setTimeout(() => {
     //     // if (img.load(true) && img[0].hasAttribute('data-src')) {
     //     if (img[0].complete && img[0].hasAttribute('data-src')) {
@@ -26,11 +18,9 @@ export class HomeComponent implements OnInit {
     //       img[0].onload = function () {
     //         img[0].removeAttribute('data-src')
     //         imgSpinner.remove()
-
     //         if (elm.is(':visible') && !img[0].hasAttribute('data-src')) {
     //           imgSpinner.remove()
     //           elm.addClass('animated')
-
     //           if (imgbg.hasClass('animated'))
     //             return
     //           else {
@@ -92,5 +82,4 @@ export class HomeComponent implements OnInit {
   //     }
   //   })
   // }
-
 }

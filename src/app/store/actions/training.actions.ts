@@ -1,22 +1,43 @@
 // import {AppAction} from '../appaction'
-import {Action} from '@ngrx/store'
-import {Training} from '../../model/training'
+import { Action } from '@ngrx/store'
+import { Training } from '../../model/training'
 
 export const LOAD_TRAININGS = '[Main] LOAD_TRAININGS'
 export const LOAD_TRAININGS_SUCCESS = '[Main] LOAD_TRAININGS_SUCCESS'
 export const LOAD_TRAININGS_FAIL = '[Main] LOAD_TRAININGS_FAIL'
 
+export const LOAD_TRAINING = '[Main] LOAD_TRAINING'
+export const LOAD_TRAINING_SUCCESS = '[Main] LOAD_TRAINING_SUCCESS'
+export const LOAD_TRAINING_FAIL = '[Main] LOAD_TRAINING_FAIL'
 
-export class LoadTrainings implements Action{
-    readonly type = LOAD_TRAININGS
+export class LoadTrainings implements Action {
+  readonly type = LOAD_TRAININGS
 }
-export class LoadTrainingsSuccess implements Action{
-    readonly type = LOAD_TRAININGS_SUCCESS
-    constructor(public payload: Training[]){}
+export class LoadTrainingsSuccess implements Action {
+  readonly type = LOAD_TRAININGS_SUCCESS
+  constructor(public payload: Training[]) {}
 }
-export class LoadTrainingsFail implements Action{
-    readonly type = LOAD_TRAININGS_FAIL
-    constructor(public payload: any){}
+export class LoadTrainingsFail implements Action {
+  readonly type = LOAD_TRAININGS_FAIL
+  constructor(public payload: any) {}
+}
+export class LoadTraining implements Action {
+  readonly type = LOAD_TRAINING
+  constructor(public id: Number) {}
+}
+export class LoadTrainingSuccess implements Action {
+  readonly type = LOAD_TRAINING_SUCCESS
+  constructor(public payload: Training) {}
+}
+export class LoadTrainingFail implements Action {
+  readonly type = LOAD_TRAINING_FAIL
+  constructor(public payload: any) {}
 }
 
-export type TrainingActions = LoadTrainings|LoadTrainingsSuccess|LoadTrainingsFail
+export type TrainingActions =
+  | LoadTrainings
+  | LoadTrainingsSuccess
+  | LoadTrainingsFail
+  | LoadTraining
+  | LoadTrainingSuccess
+  | LoadTrainingFail

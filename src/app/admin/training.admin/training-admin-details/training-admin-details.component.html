@@ -1,3 +1,123 @@
-<p>
-  training-admin-details works!
-</p>
+<section class="section" style="width:95%;margin: 0 auto;">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12 mb-r">
+      <form
+        id="trainingdetailsform"
+        [formGroup]="rForm"
+        (ngSubmit)="submit(rForm.value)"
+      >
+        <p class="h5 text-center mb-4">Sign up</p>
+        <!-- Grid row -->
+        <div class="form-row">
+          <!-- Material input -->
+          <div class="form-group col-md-6">
+            <!-- [(ngModel)]="training.title" -->
+            <mat-form-field class="input-width">
+              <input
+                matInput
+                formControlName="title"
+                placeholder="Title"
+                [errorStateMatcher]="matcher"
+              />
+              <mat-hint align="end">Not more then 30 characters long.</mat-hint>
+              <mat-error *ngIf="hasError('title', 'required')"
+                >Title is required</mat-error
+              >
+              <mat-error *ngIf="hasError('title', 'maxlength')"
+                >You have more than 30 characters</mat-error
+              >
+            </mat-form-field>
+          </div>
+
+          <!-- Grid column -->
+          <!-- class="form-control" -->
+          <!-- [(ngModel)]="training.secondaryTitle" -->
+          <div class="form-group col-md-6">
+            <mat-form-field class="input-width">
+              <input
+                matInput
+                formControlName="secondaryTitle"
+                placeholder="Secondary title"
+                [errorStateMatcher]="matcher"
+              />
+              <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+              <mat-error *ngIf="hasError('secondaryTitle', 'required')"
+                >Email is required</mat-error
+              >
+              <mat-error *ngIf="hasError('secondaryTitle', 'maxlength')"
+                >You have more than 100 characters</mat-error
+              >
+            </mat-form-field>
+          </div>
+
+          <!-- Grid column -->
+          <!-- [(ngModel)]="training.shortDescription" -->
+          <div class="form-group col-md-6">
+            <mat-form-field class="input-width">
+              <input
+                matInput
+                formControlName="shortDescription"
+                placeholder="Short description"
+                [errorStateMatcher]="matcher"
+              />
+              <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+              <mat-error *ngIf="hasError('shortDescription', 'required')"
+                >Short description is required</mat-error
+              >
+              <!-- <mat-error *ngIf="hasError('email', 'maxlength')"
+                >You have more than 20 characters</mat-error
+              > -->
+            </mat-form-field>
+          </div>
+          <div class="form-group col-md-6">
+            <!-- [(ngModel)]="training.longDescription" -->
+            <mat-form-field class="input-width">
+              <input
+                matInput
+                formControlName="longDescription"
+                placeholder="Long description"
+                [errorStateMatcher]="matcher"
+              />
+              <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+              <mat-error *ngIf="hasError('longDescription', 'required')"
+                >Long description is required</mat-error
+              >
+              <!-- <mat-error *ngIf="hasError('email', 'maxlength')"
+                >You have more than 20 characters</mat-error
+              > -->
+            </mat-form-field>
+          </div>
+        </div>
+
+        <!-- <div class="md-form">
+          <i class="fa fa-lock prefix grey-text"></i>
+          <input
+            type="password"
+            formControlName="passwordCheck"
+            id="orangeForm-passwordCheck"
+            class="form-control"
+            mdbInputDirective
+          />
+          <label for="orangeForm-pass">Confirm password</label>
+        </div> -->
+
+        <!-- (onSubmit)="submitthis()" -->
+        <div class="text-center">
+          <button mat-button [disabled]="!rForm.valid">
+            Submit
+          </button>
+
+          <input
+            type="submit"
+            [disabled]="!rForm.valid"
+            class="btn btn-deep-orange waves-light"
+            value="Sign up"
+            mdbWavesEffect
+          />
+        </div>
+      </form>
+      <!-- Register form -->
+    </div>
+  </div>
+  <!--/row -->
+</section>

@@ -32,10 +32,10 @@
                 [errorStateMatcher]="matcher"
               />
               <mat-hint align="end">Not more then 20 characters long.</mat-hint>
-              <mat-error *ngIf="hasError('email', 'required')"
+              <mat-error *ngIf="hasError('userName', 'required')"
                 >Name is required</mat-error
               >
-              <mat-error *ngIf="hasError('email', 'maxlength')"
+              <mat-error *ngIf="hasError('userName', 'maxlength')"
                 >You have more than 20 characters</mat-error
               >
             </mat-form-field>
@@ -56,9 +56,12 @@
               <mat-error *ngIf="hasError('email', 'required')"
                 >Email is required</mat-error
               >
-              <!-- <mat-error *ngIf="hasError('email', 'maxlength')"
-                >You have more than 20 characters</mat-error
-              > -->
+              <mat-error *ngIf="hasError('email', 'email')"
+                >Not an email format</mat-error
+              >
+              <mat-error *ngIf="hasError('email', 'maxlength')"
+                >You have more than 40 characters</mat-error
+              >
             </mat-form-field>
           </div>
 

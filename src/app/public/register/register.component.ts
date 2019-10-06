@@ -1,4 +1,4 @@
-import { services } from './../services/index'
+// import { services } from '@app/services/index'
 import { Component, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { MyErrorStateMatcher } from '@app/services/validation/myerrorstatematcher'
@@ -39,9 +39,9 @@ export class RegisterComponent implements OnInit {
   }
 
   public hasError = (controlName: string, errorName: string) => {
-    console.log(
-      'email error ' + this.rForm.controls[controlName].hasError(errorName)
-    )
+    // console.log(
+    //   'error ' + this.rForm.controls[controlName].hasError(errorName)
+    // )
     return this.rForm.controls[controlName].hasError(errorName)
   }
   // onChange($event, controlName) {
