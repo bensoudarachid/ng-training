@@ -18,34 +18,37 @@ $backgroundimg: '../images/wallpaper-1.jpg';
 
 .parampanel {
   margin: 30px auto !important;
-//  background-color: lighten($roya-blue, 30%);
+  //  background-color: lighten($roya-blue, 30%);
   -moz-background-clip: padding; /* Firefox 3.6 */
   -webkit-background-clip: padding; /* Safari 4? Chrome 6? */
   background-clip: padding-box; /* Firefox 4, Safari 5, Opera 10, IE 9 */
 }
 
-.blockborder {
-//  background-color: lighten($roya-blue, 30%);
-  border: 3px solid rgba(white, 0.3);
+// .blockborder {
+// //  background-color: lighten($roya-blue, 30%);
+//   border: 3px solid rgba(white, 0.3);
 
-  @include border-radius(15px);
-}
+//   @include border-radius(15px);
+// }
 
 .mdl-textfield__label {
   margin-bottom: 0px;
   margin-top: -2px;
   font-family: 'Roboto', Tahoma, sans-serif;
-  font-size: 1.0em !important;
+  font-size: 1em !important;
 }
 
 .mdl-selectfield__label {
   margin-bottom: 0px;
   margin-top: -2px;
   font-family: 'Roboto', Tahoma, sans-serif;
-  font-size: 1.0em !important;
+  font-size: 1em !important;
 }
 
-.mdl-spinner__layer-1, .mdl-spinner__layer-2, .mdl-spinner__layer-3, .mdl-spinner__layer-4 {
+.mdl-spinner__layer-1,
+.mdl-spinner__layer-2,
+.mdl-spinner__layer-3,
+.mdl-spinner__layer-4 {
 }
 
 .ellipsis {
@@ -69,10 +72,13 @@ $backgroundimg: '../images/wallpaper-1.jpg';
   background-color: red !important;
 }
 
-button{
-  outline: none;    
+button {
+  outline: none;
   &:hover {
     // background-color: lighten(mat-color($primary, 900),15%) !important;//rgba(mat-color($primary, 800), 0.6);
-    background-color: mat-color($primary, 800) !important;//rgba(mat-color($primary, 800), 0.6);
+    background-color: mat-color(
+      $primary,
+      800
+    ) !important; //rgba(mat-color($primary, 800), 0.6);
   }
 }

@@ -1,5 +1,26 @@
+@import 'styles';
+
 #registrationform {
-  background-color: white;
+  background-color: mat-color($primary, 50);
+  // background-color:rgb(215, 236, 255);
+  .card-body {
+    background-color: white;
+  }
+  .card-text {
+    font-size: 1em;
+    text-align: justify;
+  }
+
+  .appimage {
+    // background-color:yellow;
+    height: 100px;
+  }
+  img {
+    // margin-left: -99px;
+    margin: 0 auto;
+    width: 200px;
+    height: 200px;
+  }
   .input-width {
     width: 96%;
     margin-left: 2%;

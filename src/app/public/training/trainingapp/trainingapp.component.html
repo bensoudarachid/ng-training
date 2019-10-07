@@ -39,11 +39,14 @@
 </div>
 <h1>Posts</h1> -->
 <!-- <h1>Training app</h1> -->
-<div class='publictraining'>
-        <section class="section" style="width:95%;margin: 0 auto;">
-            <div class="row">
-                    <div *ngFor='let training of trainings$|async' class="col-sm-12 col-md-12 col-lg-4 mb-r">
-                        <!-- <div class="card">
+<div class="publictraining">
+  <section class="section" style="width:95%;margin: 0 auto;">
+    <div class="row">
+      <div
+        *ngFor="let training of trainings$ | async"
+        class="col-sm-12 col-md-12 col-lg-4 mb-r"
+      >
+        <!-- <div class="card">
                             <img class="img-fluid dataimg" src="assets/images/Blog-Deploying.svg" alt="Card image cap">
                             <div class="card-body">
                                 <h4 class="card-title">{{training.get('title')}}</h4>
@@ -64,11 +67,14 @@
                                 </span>
                             </div>
                         </div> -->
-                        <app-training-item api='training' [trainingInput]="training"></app-training-item>
-                    </div>
-            </div>
-        </section>
-      
-      <!-- <h4>{{training.get('title')}}</h4>
+        <app-training-item
+          api="training"
+          [trainingInput]="training"
+        ></app-training-item>
+      </div>
+    </div>
+  </section>
+
+  <!-- <h4>{{training.get('title')}}</h4>
       <p>{{training.get('shortDescription')}}</p> -->
 </div>

@@ -1,4 +1,4 @@
-<section class="section" style="width:95%;margin: 0 auto;">
+<section class="card" style="width:95%;margin: 0 auto;">
   <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-12 mb-r">
       <form
@@ -6,7 +6,7 @@
         [formGroup]="rForm"
         (ngSubmit)="submit(rForm.value)"
       >
-        <p class="h5 text-center mb-4">Sign up</p>
+        <p class="h5 text-center mb-4">Edit Training</p>
         <!-- Grid row -->
         <div class="form-row">
           <!-- Material input -->
@@ -106,14 +106,6 @@
           <button mat-button [disabled]="!rForm.valid">
             Submit
           </button>
-
-          <input
-            type="submit"
-            [disabled]="!rForm.valid"
-            class="btn btn-deep-orange waves-light"
-            value="Sign up"
-            mdbWavesEffect
-          />
         </div>
       </form>
       <!-- Register form -->

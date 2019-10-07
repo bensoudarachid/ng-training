@@ -1,3 +1,4 @@
+// declare var require: any
 // import {AppAction} from '../AppAction'
 import { EntityState, createEntityAdapter } from '@ngrx/entity'
 import { createFeatureSelector } from '@ngrx/store'
@@ -63,8 +64,8 @@ export function trainingsReducer(
 export const getTrainingState = createFeatureSelector<TrainingsState>(
   'training'
 )
-export const getSelectedTraining = (state: TrainingsState) => {
-  // console.log('State = ' + require('util').inspect(state, false, null))
+export const getSelectedTraining = (state: any) => {
+  console.log('State = ' + require('util').inspect(state, false, null))
   return state ? state.training.selectedTraining : null
 }
 

@@ -1,33 +1,37 @@
 // @import '../../../../scss/styles.scss';
-@import '../../../../scss/app.scss';
+@import 'app';
 
+.card {
+  // background-color:rgb(215, 236, 255);
+  background-color: mat-color($primary, 50);
 
-.card{
-    // background-color:rgb(215, 236, 255);
-    background-color:mat-color($primary, 50);
+  .card-body {
+    background-color: white;
+  }
+  .card-text {
+    font-size: 1em;
+    text-align: justify;
+  }
 
-    .card-body{background-color:white;}
-    .card-text{font-size: 1.0em;text-align:justify;}
-  
-    .appimage{
-      // background-color:yellow;
-      height: 100px;
-    }
-    img {
-      // margin-left: -99px;
-      margin: 0 auto;
-      width: 200px;
-      height: 200px;
-    }
-    
-    // .card-footer{background-color: white;}
-    .right{
-      float: right;
-    }
-    
-    // button{
-      // @include border-radius(30px);
-      // width: 40px !important;
-      // background-color:yellow;
-    // }
- }
+  .appimage {
+    // background-color:yellow;
+    height: 100px;
+  }
+  img {
+    // margin-left: -99px;
+    margin: 0 auto;
+    width: 200px;
+    height: 200px;
+  }
+
+  // .card-footer{background-color: white;}
+  .right {
+    float: right;
+  }
+
+  // button{
+  // @include border-radius(30px);
+  // width: 40px !important;
+  // background-color:yellow;
+  // }
+}

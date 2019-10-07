@@ -5,6 +5,8 @@
     "paths": {
       "@app/*": ["app/*"]
     },
+    "types": ["node"],
+    // "typeRoots": ["node_modules/@types"],
     "downlevelIteration": true,
     "importHelpers": true,
     "outDir": "./dist/out-tsc",
@@ -14,7 +16,6 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "es2015",
-    "typeRoots": ["node_modules/@types"],
     "lib": ["es2017", "dom"],
     "module": "esnext",
     "baseUrl": "./"

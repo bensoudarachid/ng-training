@@ -1,5 +1,7 @@
+@import 'styles';
+
 #trainingdetailsform {
-  background-color: white;
+  background-color: mat-color($primary, 50);
   .input-width {
     width: 96%;
     margin-left: 2%;

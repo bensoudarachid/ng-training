@@ -1,3 +1,4 @@
+// declare var require: any
 import { Training } from '@app/model/training'
 import { Observable } from 'rxjs/observable'
 import { of } from 'rxjs/observable/of'
@@ -56,7 +57,7 @@ export class TrainingAdminDetailsComponent implements OnInit {
     this.training$ = this.store.select(fromTrainingReducer.getSelectedTraining)
     this.training$.subscribe((training: Training) => {
       // this.training = training
-      this.id = training.id
+      this.id = Number(training.id)
       this.applyFormValues(this.rForm, training)
 
       console.log(
