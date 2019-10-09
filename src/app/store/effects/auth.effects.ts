@@ -72,9 +72,18 @@ export class AuthenticationEffects {
       let jwtToken = this.cookiesService.get('jwt')
       console.log('before delete:' + jwtToken)
       return this.authService.logout(jwtToken).pipe(
-        // delay(500),
+        delay(50),
         map(() => {
-          this.cookiesService.deleteAll()
+          // this.cookiesService.deleteAll()
+          this.cookiesService.set('jwt', undefined)
+          this.cookiesService.set('refreshtoken', undefined)
+          this.cookiesService.set('authority', undefined)
+          this.cookiesService.set('expirationdate', undefined)
+          // this.cookiesService.delete('jwt')
+          // this.cookiesService.delete('refreshtoken')
+          // this.cookiesService.delete('authority')
+          // this.cookiesService.delete('expirationdate')
+
           jwtToken = this.cookiesService.get('jwt')
           console.log('after delete:' + jwtToken)
           return new authActions.LogoutSuccess()
@@ -143,22 +152,33 @@ export class AuthenticationEffects {
       // let refreshtoken = this.cookiesService.get('refreshtoken')
       // console.log('Auth refresh auth token request: '+refreshtoken)
       // this.cookiesService.deleteAll()
-      return this.authService.refreshToken(refreshToken).pipe(
-        map(userAccessData => this.processAccessDataResponse(userAccessData)),
-        catchError(serverError => {
-          this.store.dispatch(
-            new authActions.LoginFailure(
-              'Could not authenticate. Please login again'
+      if (
+        refreshToken == 'null' ||
+        refreshToken == 'undefined' ||
+        refreshToken == undefined ||
+        refreshToken == ''
+      ) {
+        console.log('Refresh auth token! return undefined')
+        return of({ type: 'NO_ACTION' })
+      } else {
+        console.log('Refresh auth token! call authService')
+        return this.authService.refreshToken(refreshToken).pipe(
+          map(userAccessData => this.processAccessDataResponse(userAccessData)),
+          catchError(serverError => {
+            this.store.dispatch(
+              new authActions.LoginFailure(
+                'Could not authenticate. Please login again'
+              )
             )
-          )
-          return of(
-            new appActions.AppError(
-              'Authentication data expired. Please login again'
+            return of(
+              new appActions.AppError(
+                'Authentication data expired. Please login again'
+              )
             )
-          )
-        })
-        // ,finalize( ()=> this.refreshRunning = false)
-      )
+          })
+          // ,finalize( ()=> this.refreshRunning = false)
+        )
+      }
     })
   )
   private processAccessDataResponse(userAccessData: any) {
