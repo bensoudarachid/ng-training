@@ -74,12 +74,23 @@ export class AuthenticationEffects {
         // delay(50),
         map(() => {
           this.cookiesService.deleteAll('')
+          this.cookiesService.deleteAll('/')
+          this.cookiesService.deleteAll('/admin')
+          this.cookiesService.deleteAll('admin')
           // this.cookiesService.delete('jwt', '')
           // this.cookiesService.delete('refreshtoken', '')
           // this.cookiesService.delete('authority', '')
           // this.cookiesService.delete('expirationdate', '')
           jwtToken = this.cookiesService.get('jwt')
-          console.log('after delete:' + jwtToken)
+          console.log('after delete 2:' + jwtToken)
+          if (jwtToken) {
+            this.cookiesService.set('jwt', null, null, '/')
+            this.cookiesService.set('refreshtoken', null, null, '/')
+            this.cookiesService.set('authority', null, null, '/')
+            this.cookiesService.set('expirationdate', null, null, '/')
+            jwtToken = this.cookiesService.get('jwt')
+            console.log('after delete 3:' + jwtToken)
+          }
           return new authActions.LogoutSuccess()
         }),
         catchError(error => {
@@ -189,10 +200,20 @@ export class AuthenticationEffects {
     // this.cookiesService.set('refreshtoken', userAccessData.refresh_token, expireDate, '/', undefined, true)
     // this.cookiesService.set('authority', userAccessData.authority, expireDate, '/', undefined, true)
     // this.cookiesService.set('expirationdate', '' + expireDate.getTime())
-    this.cookiesService.set('jwt', userAccessData.access_token)
-    this.cookiesService.set('refreshtoken', userAccessData.refresh_token)
-    this.cookiesService.set('authority', userAccessData.authority)
-    this.cookiesService.set('expirationdate', '' + expireDate.getTime())
+    this.cookiesService.set('jwt', userAccessData.access_token, null, '')
+    this.cookiesService.set(
+      'refreshtoken',
+      userAccessData.refresh_token,
+      null,
+      ''
+    )
+    this.cookiesService.set('authority', userAccessData.authority, null, '')
+    this.cookiesService.set(
+      'expirationdate',
+      '' + expireDate.getTime(),
+      null,
+      ''
+    )
 
     // this.cookiesService.set('authority', userAccessData.re)
     // this.router.navigate(['/']);
