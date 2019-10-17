@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core'
-
 import { Effect, Actions, ofType } from '@ngrx/effects'
 import {
   map,
@@ -72,23 +71,21 @@ export class AuthenticationEffects {
       let jwtToken = this.cookiesService.get('jwt')
       console.log('before delete:' + jwtToken)
       return this.authService.logout(jwtToken).pipe(
-        delay(50),
+        // delay(50),
         map(() => {
-          // this.cookiesService.deleteAll()
-          this.cookiesService.set('jwt', undefined)
-          this.cookiesService.set('refreshtoken', undefined)
-          this.cookiesService.set('authority', undefined)
-          this.cookiesService.set('expirationdate', undefined)
-          // this.cookiesService.delete('jwt')
-          // this.cookiesService.delete('refreshtoken')
-          // this.cookiesService.delete('authority')
-          // this.cookiesService.delete('expirationdate')
-
+          this.cookiesService.deleteAll('')
+          // this.cookiesService.delete('jwt', '')
+          // this.cookiesService.delete('refreshtoken', '')
+          // this.cookiesService.delete('authority', '')
+          // this.cookiesService.delete('expirationdate', '')
           jwtToken = this.cookiesService.get('jwt')
           console.log('after delete:' + jwtToken)
           return new authActions.LogoutSuccess()
         }),
-        catchError(error => of(new authActions.LogoutFailure(error)))
+        catchError(error => {
+          console.log('error=' + require('util').inspect(error, false, null))
+          return of(new authActions.LogoutFailure(error))
+        })
       )
     })
   )
@@ -183,7 +180,7 @@ export class AuthenticationEffects {
   )
   private processAccessDataResponse(userAccessData: any) {
     // console.log('Return New LoginSuccess Action ')
-    console.log(userAccessData)
+    console.log('userAccessData=' + JSON.stringify(userAccessData))
     var expireDate = new Date(
       new Date().getTime() + 1000 * userAccessData.expires_in
     ) //userAccessData.expires_in))
