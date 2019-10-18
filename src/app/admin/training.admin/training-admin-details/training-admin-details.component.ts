@@ -17,9 +17,10 @@ import { ActivatedRoute } from '@angular/router'
 })
 export class TrainingAdminDetailsComponent implements OnInit {
   routeId: Number
+  training: Training
   training$: Observable<Training> = of(null)
+  file: File
   //  training: Training
-  id: Number
   rForm: FormGroup
   matcher = new MyErrorStateMatcher()
   constructor(
@@ -57,7 +58,7 @@ export class TrainingAdminDetailsComponent implements OnInit {
     this.training$ = this.store.select(fromTrainingReducer.getSelectedTraining)
     this.training$.subscribe((training: Training) => {
       // this.training = training
-      this.id = Number(training.id)
+      this.training = training
       this.applyFormValues(this.rForm, training)
 
       console.log(
@@ -79,9 +80,14 @@ export class TrainingAdminDetailsComponent implements OnInit {
     // )
   }
   submit(value: any) {
+    let tr = { ...this.training, ...value }
     console.log(
-      'TrainingAdminAppComponent submit ' +
-        require('util').inspect({ id: this.id, ...value }, false, null)
+      'TrainingAdminAppComponent save submit  =' +
+        require('util').inspect(tr, false, null)
+    )
+    this.store.dispatch(
+      // new TrainingActions.SaveTraining({ id: this.training.id, ...value }, this.file)
+      new TrainingActions.SaveTraining(tr, this.file)
     )
   }
   private applyFormValues(group, formValues) {
@@ -94,5 +100,12 @@ export class TrainingAdminDetailsComponent implements OnInit {
         formControl.setValue(formValues[key])
       }
     })
+  }
+  onFilesAdded(event) {
+    this.file = event.target.files[0]
+    console.log(
+      'event.target.files[0]=' +
+        require('util').inspect(this.file.name, false, null)
+    )
   }
 }

@@ -10,6 +10,10 @@ export const LOAD_TRAINING = '[Main] LOAD_TRAINING'
 export const LOAD_TRAINING_SUCCESS = '[Main] LOAD_TRAINING_SUCCESS'
 export const LOAD_TRAINING_FAIL = '[Main] LOAD_TRAINING_FAIL'
 
+export const SAVE_TRAINING = '[Main] SAVE_TRAINING'
+export const SAVE_TRAINING_SUCCESS = '[Main] SAVE_TRAINING_SUCCESS'
+export const SAVE_TRAINING_FAIL = '[Main] SAVE_TRAINING_FAIL'
+
 export class LoadTrainings implements Action {
   readonly type = LOAD_TRAININGS
 }
@@ -33,6 +37,18 @@ export class LoadTrainingFail implements Action {
   readonly type = LOAD_TRAINING_FAIL
   constructor(public payload: any) {}
 }
+export class SaveTraining implements Action {
+  readonly type = SAVE_TRAINING
+  constructor(public payload: Training, public trainingImageFile: File) {}
+}
+export class SaveTrainingSuccess implements Action {
+  readonly type = SAVE_TRAINING_SUCCESS
+  constructor(public payload: Training) {}
+}
+export class SaveTrainingFail implements Action {
+  readonly type = SAVE_TRAINING_FAIL
+  constructor(public payload: any) {}
+}
 
 export type TrainingActions =
   | LoadTrainings
@@ -41,3 +57,6 @@ export type TrainingActions =
   | LoadTraining
   | LoadTrainingSuccess
   | LoadTrainingFail
+  | SaveTraining
+  | SaveTrainingSuccess
+  | SaveTrainingFail

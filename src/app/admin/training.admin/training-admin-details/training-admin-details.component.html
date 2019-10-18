@@ -7,6 +7,19 @@
         (ngSubmit)="submit(rForm.value)"
       >
         <p class="h5 text-center mb-4">Edit Training now</p>
+        <div class="form-row">
+          <!-- Material input -->
+          <div class="form-group col-md-6">Hello 1</div>
+          <div class="form-group col-md-6">
+            <input
+              type="file"
+              id="fileid"
+              name="file"
+              (change)="onFilesAdded($event)"
+              ngmodel
+            />
+          </div>
+        </div>
         <!-- Grid row -->
         <div class="form-row">
           <!-- Material input -->

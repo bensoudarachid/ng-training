@@ -56,6 +56,17 @@ export function trainingsReducer(
       // state = trainingAdapter.addOne(training, state)
       return Object.assign({ ...state, selectedTraining: training })
     // return state
+    case actions.SAVE_TRAINING:
+      console.log('Save training')
+      // state = { ...state, loadingTrainings: true }
+      return state
+    case actions.SAVE_TRAINING_SUCCESS:
+      // state = { ...state, loadingTrainings: false }
+      let savedtraining = (<actions.SaveTrainingSuccess>action).payload
+      console.log('save training success ' + savedtraining.title)
+      // state = trainingAdapter.removeAll(state)
+      // state = trainingAdapter.addOne(training, state)
+      return Object.assign({ ...state, selectedTraining: savedtraining })
     default:
       return state
   }
@@ -65,7 +76,7 @@ export const getTrainingState = createFeatureSelector<TrainingsState>(
   'training'
 )
 export const getSelectedTraining = (state: any) => {
-  console.log('State = ' + require('util').inspect(state, false, null))
+  // console.log('State = ' + require('util').inspect(state, false, null))
   return state ? state.training.selectedTraining : null
 }
 
