@@ -57,7 +57,7 @@ export function trainingsReducer(
       return Object.assign({ ...state, selectedTraining: training })
     // return state
     case actions.SAVE_TRAINING:
-      console.log('Save training')
+      // console.log('Save training')
       // state = { ...state, loadingTrainings: true }
       return state
     case actions.SAVE_TRAINING_SUCCESS:

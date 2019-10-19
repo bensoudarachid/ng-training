@@ -40,7 +40,7 @@ export class TrainingEffects {
   saveTraining$ = this.actions$.pipe(
     ofType(trainingActions.SAVE_TRAINING),
     switchMap((action: trainingActions.SaveTraining) => {
-      console.log('save training effect called. training ' + action.payload)
+      // console.log('save training effect called. training ' + action.payload)
       // console.log(
       //   'save training effect called. training image file name' +
       //     action.trainingImageFile !=
