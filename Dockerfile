@@ -4,6 +4,8 @@
 # We label our stage as ‘builder’
 FROM node:10-alpine as builder
 
+USER root
+
 COPY package*.json ./
 
 ## Storing node modules on a separate layer will prevent unnecessary npm installs at each build
