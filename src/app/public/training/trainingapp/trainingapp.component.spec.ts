@@ -1,13 +1,14 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
 import { FormsModule } from '@angular/forms'
-import {HttpModule} from '@angular/http'
+import { HttpModule } from '@angular/http'
 import { Component, OnInit } from '@angular/core'
 import { NgSwitchCase } from '@angular/common'
 import { StoreModule } from '@ngrx/store'
-import { Observable } from 'rxjs/Observable'
-import {Store , select} from '@ngrx/store'
-import {Map,List} from 'immutable'
+//import { Observable } from "rxjs/observable";
+import { Observable } from 'rxjs'
+import { Store, select } from '@ngrx/store'
+import { Map, List } from 'immutable'
 
 import { trainingsReducer } from 'trainings'
 import { TrainingsService } from '../../../../services/trainings/trainings.service'
@@ -19,15 +20,14 @@ describe('TrainingappComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TrainingAppComponent ],
+      declarations: [TrainingAppComponent],
       imports: [
         FormsModule,
         HttpModule,
-        StoreModule.forRoot({trainingsReducer})        
+        StoreModule.forRoot({ trainingsReducer }),
       ],
-      providers: [TrainingsService]
-    })
-    .compileComponents()
+      providers: [TrainingsService],
+    }).compileComponents()
   }))
 
   beforeEach(() => {

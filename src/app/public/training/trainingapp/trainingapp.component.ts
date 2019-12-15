@@ -1,33 +1,32 @@
-import { Component, OnInit,OnDestroy } from '@angular/core';
-import { NgSwitchCase } from '@angular/common';
+import { Component, OnInit, OnDestroy } from '@angular/core'
+import { NgSwitchCase } from '@angular/common'
 import { StoreModule } from '@ngrx/store'
-import { Observable } from 'rxjs/Observable'
-import {Store , select} from '@ngrx/store'
+//import { Observable } from "rxjs/observable";
+import { Observable } from 'rxjs'
+import { Store, select } from '@ngrx/store'
 // import {Map,List} from 'immutable'
 
 // import * as TrainingActions from '../../../../store/actions/training.actions'
 import { Training } from '../../../model/training'
 import { TrainingsService } from '../../../services/trainings/trainings.service'
 // import {AppState} from '../../../store/appstate'
-import * as fromTrainingReducer  from '../../../store/reducers/trainings.reducer'
+import * as fromTrainingReducer from '../../../store/reducers/trainings.reducer'
 import * as TrainingActions from '../../../store/actions/training.actions'
-import { of } from 'rxjs/observable/of';
+import { of } from 'rxjs/observable/of'
 
 @Component({
   selector: 'app-trainingapp',
   templateUrl: './trainingapp.component.html',
-  styleUrls: ['./trainingapp.component.scss']
+  styleUrls: ['./trainingapp.component.scss'],
 })
-
 export class TrainingAppComponent implements OnInit, OnDestroy {
   private _name: string
   private _address: Address
   private _hobbies: string[]
-  trainings$: Observable<Training[]>=of([])
-  private isEdit = false;
+  trainings$: Observable<Training[]> = of([])
+  private isEdit = false
 
-  constructor(private store: Store<fromTrainingReducer.TrainingsState>) {
-  }
+  constructor(private store: Store<fromTrainingReducer.TrainingsState>) {}
 
   ngOnInit() {
     this._name = 'john'
@@ -38,20 +37,20 @@ export class TrainingAppComponent implements OnInit, OnDestroy {
     }
     // debugger;
     this._hobbies = ['write code', 'watch movies', 'produce music']
-    console.log("TrainingAppComponent ngOnInit. Get trainings")
+    console.log('TrainingAppComponent ngOnInit. Get trainings')
     this.store.dispatch(new TrainingActions.LoadTrainings())
-    
+
     // this.trainingsService.getTrainings().subscribe((trainings) => {
-    //   this.store.dispatch(new TrainingActions.LoadTrainingsSuccess(<Training[]>trainings)), 
+    //   this.store.dispatch(new TrainingActions.LoadTrainingsSuccess(<Training[]>trainings)),
     //   err => {
-	  //     console.log("Get trainings error:")
-	  //     console.log(err)
+    //     console.log("Get trainings error:")
+    //     console.log(err)
     //   }
     // })
     // this.getTrainings()
-    this.trainings$=this.store.select(fromTrainingReducer.selectAll)
+    this.trainings$ = this.store.select(fromTrainingReducer.selectAll)
   }
-  ngOnDestroy(){
+  ngOnDestroy() {
     // this.store.dispatch({
     //   type:LOAD_TRAININGS,
     //   payload: undefined
@@ -107,7 +106,7 @@ export class TrainingAppComponent implements OnInit, OnDestroy {
 }
 
 interface Address {
-  street: string,
-  city: string,
+  street: string
+  city: string
   housenumber: number
 }

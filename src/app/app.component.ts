@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core'
 import { Store } from '@ngrx/store'
-import { Observable } from 'rxjs/Observable'
+//import { Observable } from "rxjs/observable";
+import { Observable } from 'rxjs'
 import { CookieService } from 'ngx-cookie-service'
 import { AppState } from './store/appstate'
 import { trainingsReducer } from './store/reducers/trainings.reducer'
