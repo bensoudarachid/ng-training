@@ -1,6 +1,6 @@
 // declare var require: any
 import { Training } from '@app/model/training'
-import { Observable } from 'rxjs/observable'
+import { Observable } from 'rxjs'
 import { of } from 'rxjs/observable/of'
 import { Store } from '@ngrx/store'
 import { Component, OnInit } from '@angular/core'
