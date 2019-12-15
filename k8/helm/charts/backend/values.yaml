@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: royasoftware/trainingngfrontend
+  repository: royasoftware/trainingbackend
   pullPolicy: IfNotPresent
   version: 1.1.3
 imagePullSecrets: []
@@ -34,7 +34,8 @@ service:
   type: ClusterIP
   port: 80
   
-environment: {}
+environment:
+  MYSQL_HOST: 192.168.2.101
 
 ingress:
   enabled: false
@@ -66,7 +67,3 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
-
-backend:
-  image:
-    version: 1.1.3
