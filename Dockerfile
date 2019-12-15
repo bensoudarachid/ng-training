@@ -12,7 +12,7 @@ COPY package*.json ./
 
 #RUN npm ci && mkdir /ng-app && mv ./node_modules ./ng-app
 #RUN mkdir /ng-app && mv .\\node_modules ./ng-app
-RUN npm install
+#RUN npm install
 
 WORKDIR /ng-app
 

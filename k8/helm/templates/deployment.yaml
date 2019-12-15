@@ -13,16 +13,29 @@ spec:
     type: RollingUpdate
     rollingUpdate:
       maxSurge: 1
-      maxUnavailable: 1
+      maxUnavailable: 0
   template:
     metadata:
       labels:
         app: school
         tier: frontend
         track: stable
+        timestamp: timestamptimestamp_ph_4
     spec:
       containers:
         - name: schoolngfectn
           image: "{{ .Values.image.repository }}:{{ .Values.image.version }}"
           ports:
             - containerPort: 80
+          livenessProbe:
+            httpGet:
+              port: 80
+              path: /
+            initialDelaySeconds: 90
+            timeoutSeconds: 40
+          readinessProbe:
+            httpGet:
+              port: 80
+              path: /
+            initialDelaySeconds: 5
+            timeoutSeconds: 4
