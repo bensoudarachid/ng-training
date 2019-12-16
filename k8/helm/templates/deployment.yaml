@@ -20,7 +20,7 @@ spec:
         app: school
         tier: frontend
         track: stable
-        timestamp: timestamptimestamp_ph_4
+        timestamp: timestamptimestamp_ph
     spec:
       containers:
         - name: schoolngfectn
