@@ -6,7 +6,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build_prod": "ng build --prod",
-    "build": "ng build --aot=false --build-optimizer=false --vendor-chunk=false --extract_css=false",
+    "build": "ng build --aot=false --build-optimizer=false      --source_map=false --optimization=false",
     "build_new": "ng build --aot=false --build-optimizer=false --vendor-chunk=false --extract_css=false --source_map=false --optimization=false",
     "test": "ng test",
     "lint": "ng lint",
