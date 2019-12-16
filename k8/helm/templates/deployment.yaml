@@ -33,15 +33,15 @@ spec:
               path: /
             initialDelaySeconds: 90
             timeoutSeconds: 40
-          readinessProbe:
-            httpGet:
-              port: 8080
-              path: /actuator/health
-            initialDelaySeconds: 20
-            timeoutSeconds: 5
 #          readinessProbe:
 #            httpGet:
-#              port: 80
-#              path: /
-#            initialDelaySeconds: 5
-#            timeoutSeconds: 4
+#              port: 8080
+#              path: /actuator/health
+#            initialDelaySeconds: 20
+#            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              port: 80
+              path: /
+            initialDelaySeconds: 5
+            timeoutSeconds: 4
