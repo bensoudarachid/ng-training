@@ -5,6 +5,10 @@ metadata:
 spec:
   replicas: {{ .Values.replicaCount }}
   minReadySeconds: 5
+  initContainers:
+  - name: init-myservice
+    image: busybox:1.28
+    command: ['sh', '-c', 'until wget schoolbe:8080/api/version/{{ .Values.backend.image.version }}; do echo waiting for myservice; sleep 2; done;']  
   selector:
     matchLabels:
       app: school
