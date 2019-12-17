@@ -5,10 +5,6 @@ metadata:
 spec:
   replicas: {{ .Values.replicaCount }}
   minReadySeconds: 5
-  initContainers:
-  - name: init-myservice
-    image: busybox:1.28
-    command: ['sh', '-c', 'until wget schoolbe:8080/api/version/{{ .Values.backend.image.version }}; do echo waiting for myservice; sleep 2; done;']  
   selector:
     matchLabels:
       app: school
@@ -26,6 +22,10 @@ spec:
         track: stable
         timestamp: 2_timestamptimestamp_ph
     spec:
+      initContainers:
+        - name: init-myservice
+          image: royasoftware/trainingbackend:{{ .Values.backend.image.version }}
+          command: ['sh', '-c', 'until wget schoolbe:8080/api/version?vernr={{ .Values.backend.image.version }}; do echo waiting for myservice; sleep 2; done;']
       containers:
         - name: schoolngfectn
           image: "{{ .Values.image.repository }}:{{ .Values.image.version }}"
@@ -38,6 +38,11 @@ spec:
             initialDelaySeconds: 90
             timeoutSeconds: 40
           readinessProbe:
+            httpGet:
+              port: 80
+              path: /
+            initialDelaySeconds: 5
+            timeoutSeconds: 4
 #          readinessProbe:
 #            exec:
 #              command:
@@ -46,9 +51,3 @@ spec:
 #              - schoolbe:8080/actuator/health
 #              - -O
 #              - health
-          readinessProbe:
-            httpGet:
-              port: 80
-              path: /
-            initialDelaySeconds: 5
-            timeoutSeconds: 4
