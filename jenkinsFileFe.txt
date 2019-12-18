@@ -1,0 +1,99 @@
+node {
+   env.WORKSPACE = pwd()
+   def array = pwd().split("/")
+   env.JOB_DIR = array[array.length - 1];
+    
+   sh '''#!/bin/bash
+      '''
+   def dockerThere=false
+   stage('Backend'){
+      script {
+        def job = build job: 'TrainingBe', propagate: true, wait: true
+        env.trainingBeGitVers = job.buildVariables.GITVERSION
+      }
+      sh "echo  ${env.trainingBeGitVers}"
+   }
+   stage('SCM') { // for display purposes
+        echo "Workspace: ${env.WORKSPACE}"
+        echo "Job dir = ${env.JOB_DIR}"
+        sh "rm -rf ./*"
+        git url: 'https://github.com/bensoudarachid/ng-training.git', branch: 'master'
+        sh '''#!/bin/bash
+          gitversion /output buildserver
+        '''
+   }
+      stage('Prepare') {
+//      dir("${env.WORKSPACE}/training-springboot"){
+//        GITVERSION = sh(returnStdout: true, script: 'echo 0.0.1')
+//        sh "cd training-springboot"
+        env.GITVERSION = getGitVersion()
+        echo "env.GITVERSION ${env.GITVERSION}"
+//        cd training-springboot
+//        if [[ "$(docker images -q royasoftware/trainingbackend:1.2.2_7 > /dev/null)" == "" ]]; then          
+        sh "docker images -q royasoftware/trainingngfrontend:$GITVERSION > result"
+        dockerThere=(readFile('result').trim()!="")
+        echo "Is docker image there? "+dockerThere
+//      }npm run build
+
+   }
+//          ng update --all --force
+   stage('Install') {
+      if(  dockerThere ) return;
+      sh '''
+          rm -rf /tmp/$JOB_DIR
+          cp -r $PWD /tmp/$JOB_DIR
+          cd /tmp/$JOB_DIR
+          npm install
+      '''
+//          npm install
+       
+   }   
+   stage('Build') {
+      if(  dockerThere ) return;
+      sh '''
+          cd /tmp/$JOB_DIR
+          npm run build
+          cp -r /tmp/$JOB_DIR/dist $WORKSPACE/dist
+      '''
+//          npm run build
+   }
+   stage('Docker') {
+     if(  dockerThere ) return;
+     sh '''
+           docker build -t royasoftware/trainingngfrontend:$GITVERSION .
+     '''
+   }
+   stage('Deploy') {
+//      if(  dockerThere ) return;
+      sh '''
+        helm template ./k8/helm --set image.version=$GITVERSION,backend.image.version=$trainingBeGitVers | sed ""s/timestamp_ph/$(date +%s)/"" | kubectl apply -f -
+      '''
+   }
+   stage('Clean') {
+      if(  dockerThere ) return;
+      sh '''
+        rm -rf /tmp/*
+        sleep 20
+      '''
+//        docker system prune -a -f
+   }
+   
+   
+}
+
+@NonCPS
+def getGitVersion() {
+  System.out.println("####################################### LETS GO");
+//  System.out.println("env var in version ${env.WORKSPACE}");
+//  System.out.println("env var in version ${workspace}");
+  //String path= pwd();
+  Properties prop = new Properties();
+//  ClassLoader loader = Thread.currentThread().getContextClassLoader();           
+//			InputStream stream = loader.getResourceAsStream("D:\\RP\\Tests\\SpringBoot_Training\\testjmsadpater.properties");
+	prop.load(new FileInputStream("${env.WORKSPACE}/gitversion.properties") );
+	String semVer = prop.getProperty("GitVersion_SemVer");
+	String commitsSinceVersionSource = prop.getProperty("GitVersion_CommitsSinceVersionSource");
+    String gitver = semVer+"_"+commitsSinceVersionSource;
+//    sh '''export GITVERSION='''+gitver
+    return gitver;
+}
