@@ -22,10 +22,10 @@ spec:
         track: stable
         timestamp: 2_timestamptimestamp_ph
     spec:
-#      initContainers:
-#        - name: init-myservice
-#          image: royasoftware/trainingbackend:{{ .Values.backend.image.version }}
-#          command: ['sh', '-c', 'until wget schoolbe:8080/api/version?vernr={{ .Values.backend.image.version }}; do echo waiting for myservice; sleep 2; done;']
+      initContainers:
+        - name: init-myservice
+          image: royasoftware/trainingbackend:{{ .Values.backend.image.version }}
+          command: ['sh', '-c', 'until wget http://schoolbe:8080/api/version?vernr={{ .Values.backend.image.version }}; do echo waiting for myservice; sleep 2; done;']
       containers:
         - name: schoolngfectn
           image: "{{ .Values.image.repository }}:{{ .Values.image.version }}"
