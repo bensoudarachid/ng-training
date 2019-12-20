@@ -20,7 +20,7 @@ spec:
         app: school
         tier: frontend
         track: stable
-        timestamp: 2_timestamptimestamp_ph
+        timestamp: 12_timestamptimestamp_ph
     spec:
       initContainers:
         - name: init-myservice

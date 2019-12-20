@@ -8,7 +8,7 @@ spec:
     tier: backend
   ports:
     - protocol: "TCP"
-      nodePort: 31133
+#      nodePort: 31133
       port: 8080
       targetPort: 8080
   type: LoadBalancer
