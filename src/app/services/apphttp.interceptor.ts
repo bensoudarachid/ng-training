@@ -15,11 +15,11 @@ import * as authActions from '@app/store/actions/auth.actions'
 import { AppState } from '@app/store/appstate'
 import { tap, catchError } from 'rxjs/operators'
 import * as appActions from '@app/store/actions/app.actions'
-import backendJson from '@assets/BackendJson.json'
+import dependencies from '@assets/dependencies.json'
 
 @Injectable()
 export class AppHttpInterceptor implements HttpInterceptor {
-  version: String
+  beVersion: String
   // constructor(private store: Store<AppState>, private myhttp: Http) {
   //   this.myhttp
   //     .get('./assets/backend.json')
@@ -64,11 +64,13 @@ export class AppHttpInterceptor implements HttpInterceptor {
           //     require('util').inspect(evt.headers.get('beversion'), false, null)
           // )
           if (evt.headers.get('beversion') != null) {
-            if (this.version == null) {
+            if (this.beVersion == null) {
               // console.log('Set version for the first time')
-              this.version = backendJson.version ? backendJson.version : null
+              this.beVersion = dependencies.beversion
+                ? dependencies.beversion
+                : null
               // this.version = evt.headers.get('beversion')
-            } else if (this.version != evt.headers.get('beversion')) {
+            } else if (this.beVersion != evt.headers.get('beversion')) {
               // console.log('trigger refresh')
               // window.location.reload()
               this.store.dispatch(new appActions.RefreshApp())
