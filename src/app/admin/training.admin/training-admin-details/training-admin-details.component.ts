@@ -62,9 +62,9 @@ export class TrainingAdminDetailsComponent implements OnInit {
       this.training = training
       this.applyFormValues(this.rForm, training)
 
-      console.log(
-        'Got training ' + require('util').inspect(training, false, null)
-      )
+      // console.log(
+      //   'Got training ' + require('util').inspect(training, false, null)
+      // )
     })
   }
 
