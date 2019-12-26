@@ -7,11 +7,11 @@ import { Store, select } from '@ngrx/store'
 // import {Map,List} from 'immutable'
 
 // import * as TrainingActions from '../../../../store/actions/training.actions'
-import { Training } from '../../../model/training'
-import { TrainingsService } from '../../../services/trainings/trainings.service'
+import { Training } from '@app/model/training'
+import { TrainingsService } from '@app/services/trainings/trainings.service'
 // import {AppState} from '../../../store/appstate'
-import * as fromTrainingReducer from '../../../store/reducers/trainings.reducer'
-import * as TrainingActions from '../../../store/actions/training.actions'
+import * as fromTrainingReducer from '@app/store/reducers/trainings.reducer'
+import * as TrainingActions from '@app/store/actions/training.actions'
 import { of } from 'rxjs/observable/of'
 
 @Component({
