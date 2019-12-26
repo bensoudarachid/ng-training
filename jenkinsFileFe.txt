@@ -22,7 +22,7 @@ node {
           gitversion /output buildserver
         '''
         sh "rm -f ./src/assets/BackendJson.json"
-        sh 'echo { \\"version1\\":\\"$trainingBeGitVers\\" } > ./src/assets/BackendJson.json'
+        sh 'echo { \\"version\\":\\"$trainingBeGitVers\\" } > ./src/assets/BackendJson.json'
    }
    stage('Prepare') {
 //    dir("${env.WORKSPACE}/training-springboot"){
