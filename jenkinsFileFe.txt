@@ -21,20 +21,22 @@ node {
         sh '''#!/bin/bash
           gitversion /output buildserver
         '''
+        sh "rm -f ./src/assets/BackendJson.json"
+        sh 'echo { \\"version1\\":\\"$trainingBeGitVers\\" } > ./src/assets/BackendJson.json'
    }
-      stage('Prepare') {
-//      dir("${env.WORKSPACE}/training-springboot"){
-//        GITVERSION = sh(returnStdout: true, script: 'echo 0.0.1')
-//        sh "cd training-springboot"
-        env.GITVERSION = getGitVersion()
-        echo "env.GITVERSION ${env.GITVERSION}"
-//        cd training-springboot
-//        if [[ "$(docker images -q royasoftware/trainingbackend:1.2.2_7 > /dev/null)" == "" ]]; then          
-        sh "docker images -q royasoftware/trainingngfrontend:$GITVERSION > result"
-        dockerThere=(readFile('result').trim()!="")
-        echo "Is docker image there? "+dockerThere
+   stage('Prepare') {
+//    dir("${env.WORKSPACE}/training-springboot"){
+//    GITVERSION = sh(returnStdout: true, script: 'echo 0.0.1')
+//     sh "cd training-springboot"
+      env.GITVERSION = getGitVersion()
+      echo "env.GITVERSION ${env.GITVERSION}"
+//      cd training-springboot
+//      if [[ "$(docker images -q royasoftware/trainingbackend:1.2.2_7 > /dev/null)" == "" ]]; then          
+      sh "docker images -q royasoftware/trainingngfrontend:$GITVERSION > result"
+      dockerThere=(readFile('result').trim()!="")
+      echo "Is docker image there? "+dockerThere
 //      }npm run build
-
+      sh 'echo { \\"version1\\":\\"$trainingBeGitVers\\" } > ./src/assets/BackendJson.json'
    }
 //          ng update --all --force
    stage('Install') {
@@ -97,3 +99,4 @@ def getGitVersion() {
 //    sh '''export GITVERSION='''+gitver
     return gitver;
 }
+
