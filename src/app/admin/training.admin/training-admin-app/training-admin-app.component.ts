@@ -23,7 +23,7 @@ export class TrainingAdminAppComponent implements OnInit {
 
     this.trainings$ = this.store.select(fromTrainingReducer.selectAll)
     this.trainings$.subscribe((trainings: Training[]) => {
-      console.log('Got trainings length' + trainings.length)
+      // console.log('Got trainings length' + trainings.length)
     })
   }
   // ngAfterViewInit(){

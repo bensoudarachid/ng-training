@@ -36,19 +36,20 @@ export class AppHttpInterceptor implements HttpInterceptor {
     return next.handle(authReq).pipe(
       tap(evt => {
         if (evt instanceof HttpResponse) {
-          console.log(
-            'evt=' +
-              require('util').inspect(evt.headers.get('beversion'), false, null)
-          )
+          // console.log(
+          //   'evt=' +
+          //     require('util').inspect(evt.headers.get('beversion'), false, null)
+          // )
           if (evt.headers.get('beversion') != null) {
             if (this.version == null) {
-              console.log('Set version for the first time')
+              // console.log('Set version for the first time')
               this.version = evt.headers.get('beversion')
             } else if (this.version != evt.headers.get('beversion')) {
-              console.log('trigger refresh')
+              // console.log('trigger refresh')
               // window.location.reload()
               this.store.dispatch(new appActions.RefreshApp())
-            } else console.log('Same version. No refresh')
+            }
+            // else console.log('Same version. No refresh')
           }
           // if(evt.body && evt.body.success)
           //     this.toasterService.success(evt.body.success.message, evt.body.success.title, { positionClass: 'toast-bottom-center' });
