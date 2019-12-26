@@ -6,6 +6,7 @@ import {
   HttpRequest,
   HttpResponse,
 } from '@angular/common/http'
+
 import { Injectable } from '@angular/core'
 import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs'
@@ -14,11 +15,33 @@ import * as authActions from '@app/store/actions/auth.actions'
 import { AppState } from '@app/store/appstate'
 import { tap, catchError } from 'rxjs/operators'
 import * as appActions from '@app/store/actions/app.actions'
+import backendJson from '@assets/BackendJson.json'
 
 @Injectable()
 export class AppHttpInterceptor implements HttpInterceptor {
   version: String
-  constructor(private store: Store<AppState>) {}
+  // constructor(private store: Store<AppState>, private myhttp: Http) {
+  //   this.myhttp
+  //     .get('./assets/backend.json')
+  //     .map(res => res.json())
+  //     .subscribe(
+  //       data => {
+  //         console.log('data=' + require('util').inspect(data, false, null))
+  //         resolve(true)
+  //       },
+  //       (error: any) => {
+  //         console.error(error)
+  //         return Observable.throw(error.json().error || 'Server error')
+  //       }
+  //     )
+  // }
+  constructor(private store: Store<AppState>) {
+    // this.version = backendJson.version ? backendJson.version : null
+    // console.log(
+    //   'BackendJson=' + require('util').inspect(this.version, false, null)
+    // )
+  }
+
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
@@ -43,7 +66,8 @@ export class AppHttpInterceptor implements HttpInterceptor {
           if (evt.headers.get('beversion') != null) {
             if (this.version == null) {
               // console.log('Set version for the first time')
-              this.version = evt.headers.get('beversion')
+              this.version = backendJson.version ? backendJson.version : null
+              // this.version = evt.headers.get('beversion')
             } else if (this.version != evt.headers.get('beversion')) {
               // console.log('trigger refresh')
               // window.location.reload()

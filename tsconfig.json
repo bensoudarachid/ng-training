@@ -3,7 +3,8 @@
   "compileOnSave": false,
   "compilerOptions": {
     "paths": {
-      "@app/*": ["app/*"]
+      "@app/*": ["app/*"],
+      "@assets/*": ["assets/*"]
     },
     "types": ["node"],
     // "typeRoots": ["node_modules/@types"],
@@ -18,7 +19,9 @@
     "target": "es2015",
     "lib": ["es2017", "dom"],
     "module": "esnext",
-    "baseUrl": "./"
+    "baseUrl": "./",
+    "resolveJsonModule": true,
+    "esModuleInterop": true
   },
   "include": ["node_modules/angular-bootstrap-md/**/*.ts", "src/**/*.ts"]
 }
