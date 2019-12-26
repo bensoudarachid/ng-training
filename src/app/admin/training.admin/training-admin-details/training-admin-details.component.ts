@@ -82,10 +82,10 @@ export class TrainingAdminDetailsComponent implements OnInit {
   }
   submit(value: any) {
     let tr = { ...this.training, ...value }
-    console.log(
-      'TrainingAdminAppComponent save submit  =' +
-        require('util').inspect(tr, false, null)
-    )
+    // console.log(
+    //   'TrainingAdminAppComponent save submit  =' +
+    //     require('util').inspect(tr, false, null)
+    // )
     this.store.dispatch(
       // new TrainingActions.SaveTraining({ id: this.training.id, ...value }, this.file)
       new TrainingActions.SaveTraining(tr, this.file)
