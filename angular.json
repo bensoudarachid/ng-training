@@ -20,7 +20,8 @@
             "styles": [
               "node_modules/angular-bootstrap-md/assets/scss/bootstrap/bootstrap.scss",
               "node_modules/angular-bootstrap-md/assets/scss/mdb.scss",
-              "src/scss/styles.scss"
+              "src/scss/styles.scss",
+              "node_modules/fullcalendar/dist/fullcalendar.min.css"
             ],
             "stylePreprocessorOptions": {
               "includePaths": ["src/scss"]
@@ -28,7 +29,9 @@
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/chart.js/dist/Chart.js",
-              "node_modules/hammerjs/hammer.min.js"
+              "node_modules/hammerjs/hammer.min.js",
+              "node_modules/moment/min/moment.min.js",
+              "node_modules/fullcalendar/dist/fullcalendar.min.js"
             ]
           },
           "configurations": {

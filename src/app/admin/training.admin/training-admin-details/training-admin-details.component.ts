@@ -10,6 +10,8 @@ import * as TrainingActions from '@app/store/actions/training.actions'
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { MyErrorStateMatcher } from '@app/services/validation/myerrorstatematcher'
 import { ActivatedRoute } from '@angular/router'
+// import * as $ from 'jquery'
+declare var $: any
 
 @Component({
   selector: 'app-training-admin-details',
@@ -24,6 +26,7 @@ export class TrainingAdminDetailsComponent implements OnInit {
   //  training: Training
   rForm: FormGroup
   matcher = new MyErrorStateMatcher()
+
   constructor(
     private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
@@ -76,6 +79,99 @@ export class TrainingAdminDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
+    setTimeout(() => {
+      $('#calendar').fullCalendar({
+        defaultDate: '2001-01-07',
+        defaultView: 'agendaWeek',
+        allDaySlot: false,
+        contentHeight: 'auto',
+        // height: 560,
+        header: {
+          // left: 'prev,next today',
+          // center: 'title',
+          // right: 'month,agendaWeek,agendaDay',
+          left: '',
+          center: '',
+          right: '',
+        },
+        // businessHours: [
+        //   {
+        //     dow: [0, 1, 2, 3, 4, 5, 6], // Maybe not 0,6? Sunday,Saturday
+        //     start: '08:00',
+        //     end: '12:00',
+        //   },
+        //   {
+        //     dow: [0, 1, 2, 3, 4, 5, 6], // Maybe not 0,6? Sunday,Saturday
+        //     start: '13:00',
+        //     end: '18:00',
+        //   },
+        // ],
+        columnHeaderHtml: function(date) {
+          let day = date.day()
+          if (day === 0) {
+            return 'Su'
+          } else if (day === 1) {
+            return 'Mo'
+          } else if (day === 2) {
+            return 'Tu'
+          } else if (day === 3) {
+            return 'We'
+          } else if (day === 4) {
+            return 'Th'
+          } else if (day === 5) {
+            return 'Fr'
+          } else if (day === 6) {
+            return 'Sa'
+          } else {
+            return ''
+          }
+        },
+        minTime: '08:00:00',
+        maxTime: '18:00:00',
+        // views: {
+        //   dayGridMonth: {
+        //     // name of view
+        //     titleFormat: { year: 'numeric', month: '2-digit', day: '2-digit' },
+        //     // other view-specific options here
+        //   },
+        // },
+        navLinks: false,
+        editable: true,
+        eventLimit: true,
+        events: [
+          {
+            // title: 'This is your',
+            start: '2001-01-09T09:00:00',
+            color: '#f9c66a', // override!
+          },
+          {
+            // title: 'Your meeting with john',
+            start: '2001-01-11T06:30:00',
+            end: '2001-01-11T14:30:00',
+            color: '#019efb',
+          },
+        ], // request to load current events
+        eventRender: function(event, element) {
+          element.attr('title', event.tip)
+        },
+        // select: function(start, end, jsEvent, view) {
+        //   var abc = prompt('Enter Title')
+        //   var allDay = !start.hasTime && !end.hasTime
+        //   var newEvent = {
+        //     title: abc,
+        //     start: '2020-01-17T12:30:00',
+        //     allDay: false, // will make the time show,
+        //     color: '#ffaa00',
+        //   }
+        //   $('#calendar').fullCalendar('renderEvent', newEvent)
+        // },
+      })
+      // var newEvent = {
+      //   title: 'NEW EVENT',
+      //   start: '2001-01-12T08:30:00',
+      // }
+      // $('#calendar').fullCalendar('renderEvent', newEvent, 'stick')
+    }, 100)
     // console.log(
     //   'TrainingAdminAppComponent ngOnInit. Get training' + this.routeId
     // )
@@ -90,6 +186,13 @@ export class TrainingAdminDetailsComponent implements OnInit {
       // new TrainingActions.SaveTraining({ id: this.training.id, ...value }, this.file)
       new TrainingActions.SaveTraining(tr, this.file)
     )
+  }
+  addEvent(value: any) {
+    var newEvent = {
+      title: 'NEW EVENT',
+      start: '2001-01-12T08:30:00',
+    }
+    $('#calendar').fullCalendar('renderEvent', newEvent, 'stick')
   }
   private applyFormValues(group, formValues) {
     Object.keys(formValues).forEach(key => {

@@ -14,6 +14,8 @@ import { TrainingAdminDetailsComponent } from './training-admin-details/training
 import { MyOwnCustomMaterialModule } from '../../shared/modules/appmaterial.module'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
+// import { CalendarComponent } from 'angular2-fullcalendar/src/calendar/calendar'
+
 const routes: Routes = [
   // { path: 'trainings', component: TrainingAppComponent },
   {
@@ -41,6 +43,7 @@ const routes: Routes = [
     TrainingAdminAppComponent,
     TrainingAdminItemComponent,
     TrainingAdminDetailsComponent,
+    // CalendarComponent,
   ],
   providers: [TrainingsService],
 })
