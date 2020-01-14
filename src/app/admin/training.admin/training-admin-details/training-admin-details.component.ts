@@ -108,23 +108,14 @@ export class TrainingAdminDetailsComponent implements OnInit {
         // ],
         columnHeaderHtml: function(date) {
           let day = date.day()
-          if (day === 0) {
-            return 'Su'
-          } else if (day === 1) {
-            return 'Mo'
-          } else if (day === 2) {
-            return 'Tu'
-          } else if (day === 3) {
-            return 'We'
-          } else if (day === 4) {
-            return 'Th'
-          } else if (day === 5) {
-            return 'Fr'
-          } else if (day === 6) {
-            return 'Sa'
-          } else {
-            return ''
-          }
+          if (day === 0) return 'Su'
+          else if (day === 1) return 'Mo'
+          else if (day === 2) return 'Tu'
+          else if (day === 3) return 'We'
+          else if (day === 4) return 'Th'
+          else if (day === 5) return 'Fr'
+          else if (day === 6) return 'Sa'
+          else return ''
         },
         minTime: '08:00:00',
         maxTime: '18:00:00',
@@ -141,11 +132,13 @@ export class TrainingAdminDetailsComponent implements OnInit {
         events: [
           {
             // title: 'This is your',
+            id: 1,
             start: '2001-01-09T09:00:00',
             color: '#f9c66a', // override!
           },
           {
             // title: 'Your meeting with john',
+            id: 2,
             start: '2001-01-11T06:30:00',
             end: '2001-01-11T14:30:00',
             color: '#019efb',
@@ -154,17 +147,7 @@ export class TrainingAdminDetailsComponent implements OnInit {
         eventRender: function(event, element) {
           element.attr('title', event.tip)
         },
-        // select: function(start, end, jsEvent, view) {
-        //   var abc = prompt('Enter Title')
-        //   var allDay = !start.hasTime && !end.hasTime
-        //   var newEvent = {
-        //     title: abc,
-        //     start: '2020-01-17T12:30:00',
-        //     allDay: false, // will make the time show,
-        //     color: '#ffaa00',
-        //   }
-        //   $('#calendar').fullCalendar('renderEvent', newEvent)
-        // },
+        eventClick: this.eventClick,
       })
       // var newEvent = {
       //   title: 'NEW EVENT',
@@ -175,6 +158,11 @@ export class TrainingAdminDetailsComponent implements OnInit {
     // console.log(
     //   'TrainingAdminAppComponent ngOnInit. Get training' + this.routeId
     // )
+  }
+  eventClick(calEvent, jsEvent, view) {
+    console.log(
+      'Event Start =' + require('util').inspect(calEvent.start, false, null)
+    )
   }
   submit(value: any) {
     let tr = { ...this.training, ...value }
@@ -189,10 +177,14 @@ export class TrainingAdminDetailsComponent implements OnInit {
   }
   addEvent(value: any) {
     var newEvent = {
+      id: 0,
       title: 'NEW EVENT',
-      start: '2001-01-12T08:30:00',
+      start: '2001-01-07T08:00:00',
     }
     $('#calendar').fullCalendar('renderEvent', newEvent, 'stick')
+  }
+  removeEvent(value: any) {
+    $('#calendar').fullCalendar('removeEvents', 0)
   }
   private applyFormValues(group, formValues) {
     Object.keys(formValues).forEach(key => {
