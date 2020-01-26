@@ -161,7 +161,7 @@ export class TrainingAdminDetailsComponent implements OnInit {
   }
   eventClick(calEvent, jsEvent, view) {
     console.log(
-      'Event Start =' + require('util').inspect(calEvent.start, false, null)
+      'Event Start =' + require('util').inspect(calEvent.id, false, null)
     )
   }
   submit(value: any) {
