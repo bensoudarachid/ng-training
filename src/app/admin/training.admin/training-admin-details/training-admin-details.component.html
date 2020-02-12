@@ -122,10 +122,20 @@
           <button mat-button [disabled]="!rForm.valid">
             Submit
           </button>
-          <button mat-button (click)="addEvent()" [disabled]="!rForm.valid">
+          <button
+            mat-button
+            type="button"
+            (click)="addEvent()"
+            [disabled]="!rForm.valid"
+          >
             Add event
           </button>
-          <button mat-button (click)="removeEvent()" [disabled]="!rForm.valid">
+          <button
+            mat-button
+            type="button"
+            (click)="removeEvents()"
+            [disabled]="!rForm.valid"
+          >
             Remove event
           </button>
         </div>

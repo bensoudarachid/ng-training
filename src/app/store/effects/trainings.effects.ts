@@ -1,3 +1,4 @@
+import { Training } from '@app/model/training'
 import { Injectable } from '@angular/core'
 
 import { Effect, Actions, ofType } from '@ngrx/effects'
@@ -32,6 +33,14 @@ export class TrainingEffects {
       console.log('load training effect called id ' + action.id)
       return this.trainingsService.getTraining(action.id).pipe(
         map(training => new trainingActions.LoadTrainingSuccess(training)),
+        // map(training => {
+        //   if (training.events)
+        //     // console.log(
+        //     //   'effects event 0 =' +
+        //     //     require('util').inspect(training.events[0], false, null)
+        //     // )
+        //     return new trainingActions.LoadTrainingSuccess(training)
+        // }),
         catchError(error => of(new trainingActions.LoadTrainingFail(error)))
       )
     })

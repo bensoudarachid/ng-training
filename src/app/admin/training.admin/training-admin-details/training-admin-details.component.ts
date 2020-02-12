@@ -1,5 +1,6 @@
 // declare var require: any
 import { Training } from '@app/model/training'
+import { TrEvent } from '@app/model/trevent'
 //import { Observable } from "rxjs/observable";
 import { Observable } from 'rxjs'
 import { of } from 'rxjs/observable/of'
@@ -19,6 +20,8 @@ declare var $: any
   styleUrls: ['./training-admin-details.component.scss'],
 })
 export class TrainingAdminDetailsComponent implements OnInit {
+  markColor = '#ff9efb'
+  normalColor = '#4499ff'
   routeId: Number
   training: Training
   training$: Observable<Training> = of(null)
@@ -64,10 +67,39 @@ export class TrainingAdminDetailsComponent implements OnInit {
       // this.training = training
       this.training = training
       this.applyFormValues(this.rForm, training)
+      this.setEvents(this.training.events)
 
-      // console.log(
-      //   'Got training ' + require('util').inspect(training, false, null)
-      // )
+      // this.setEvents([
+      //   {
+      //     // title: 'This is your',
+      //     id: 1,
+      //     start: '2001-01-09T09:00:00',
+      //     color: '#f9c66a', // override!
+      //   },
+      //   {
+      //     // title: 'Your meeting with john',
+      //     id: 2,
+      //     start: '2001-01-11T06:30:00',
+      //     end: '2001-01-11T14:30:00',
+      //     color: '#019efb',
+      //   },
+      // ])
+      // this.setEvents([
+      //   {
+      //     id: 1,
+      //     number: 3,
+      //     start: '2001-01-11T08:30:00.000Z',
+      //     end: '2001-01-11T14:30:00.000Z',
+      //     version: 0,
+      //   },
+      //   {
+      //     id: 2,
+      //     number: 4,
+      //     start: '2001-01-10T09:00:00.000Z',
+      //     end: '2001-01-10T14:30:00.000Z',
+      //     version: 0,
+      //   },
+      // ])
     })
   }
 
@@ -79,92 +111,127 @@ export class TrainingAdminDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    setTimeout(() => {
-      $('#calendar').fullCalendar({
-        defaultDate: '2001-01-07',
-        defaultView: 'agendaWeek',
-        allDaySlot: false,
-        contentHeight: 'auto',
-        // height: 560,
-        header: {
-          // left: 'prev,next today',
-          // center: 'title',
-          // right: 'month,agendaWeek,agendaDay',
-          left: '',
-          center: '',
-          right: '',
-        },
-        // businessHours: [
-        //   {
-        //     dow: [0, 1, 2, 3, 4, 5, 6], // Maybe not 0,6? Sunday,Saturday
-        //     start: '08:00',
-        //     end: '12:00',
-        //   },
-        //   {
-        //     dow: [0, 1, 2, 3, 4, 5, 6], // Maybe not 0,6? Sunday,Saturday
-        //     start: '13:00',
-        //     end: '18:00',
-        //   },
-        // ],
-        columnHeaderHtml: function(date) {
-          let day = date.day()
-          if (day === 0) return 'Su'
-          else if (day === 1) return 'Mo'
-          else if (day === 2) return 'Tu'
-          else if (day === 3) return 'We'
-          else if (day === 4) return 'Th'
-          else if (day === 5) return 'Fr'
-          else if (day === 6) return 'Sa'
-          else return ''
-        },
-        minTime: '08:00:00',
-        maxTime: '18:00:00',
-        // views: {
-        //   dayGridMonth: {
-        //     // name of view
-        //     titleFormat: { year: 'numeric', month: '2-digit', day: '2-digit' },
-        //     // other view-specific options here
-        //   },
-        // },
-        navLinks: false,
-        editable: true,
-        eventLimit: true,
-        events: [
-          {
-            // title: 'This is your',
-            id: 1,
-            start: '2001-01-09T09:00:00',
-            color: '#f9c66a', // override!
-          },
-          {
-            // title: 'Your meeting with john',
-            id: 2,
-            start: '2001-01-11T06:30:00',
-            end: '2001-01-11T14:30:00',
-            color: '#019efb',
-          },
-        ], // request to load current events
-        eventRender: function(event, element) {
-          element.attr('title', event.tip)
-        },
-        eventClick: this.eventClick,
-      })
-      // var newEvent = {
-      //   title: 'NEW EVENT',
-      //   start: '2001-01-12T08:30:00',
-      // }
-      // $('#calendar').fullCalendar('renderEvent', newEvent, 'stick')
-    }, 100)
-    // console.log(
-    //   'TrainingAdminAppComponent ngOnInit. Get training' + this.routeId
-    // )
+    // this.setEvents([
+    //   {
+    //     // title: 'This is your',
+    //     id: 1,
+    //     start: '2001-01-09T09:00:00',
+    //     color: '#f9c66a', // override!
+    //   },
+    //   {
+    //     // title: 'Your meeting with john',
+    //     id: 2,
+    //     start: '2001-01-11T06:30:00',
+    //     end: '2001-01-11T14:30:00',
+    //     color: '#019efb',
+    //   },
+    // ])
+    $('#calendar').fullCalendar({
+      defaultDate: '2001-01-07',
+      defaultView: 'agendaWeek',
+      allDaySlot: false,
+      contentHeight: 'auto',
+      // height: 560,
+      header: {
+        // left: 'prev,next today',
+        // center: 'title',
+        // right: 'month,agendaWeek,agendaDay',
+        left: '',
+        center: '',
+        right: '',
+      },
+      // businessHours: [
+      //   {
+      //     dow: [0, 1, 2, 3, 4, 5, 6], // Maybe not 0,6? Sunday,Saturday
+      //     start: '08:00',
+      //     end: '12:00',
+      //   },
+      //   {
+      //     dow: [0, 1, 2, 3, 4, 5, 6], // Maybe not 0,6? Sunday,Saturday
+      //     start: '13:00',
+      //     end: '18:00',
+      //   },
+      // ],
+      columnHeaderHtml: function(date) {
+        let day = date.day()
+        if (day === 0) return 'Su'
+        else if (day === 1) return 'Mo'
+        else if (day === 2) return 'Tu'
+        else if (day === 3) return 'We'
+        else if (day === 4) return 'Th'
+        else if (day === 5) return 'Fr'
+        else if (day === 6) return 'Sa'
+        else return ''
+      },
+      minTime: '08:00:00',
+      maxTime: '18:00:00',
+      // views: {
+      //   dayGridMonth: {
+      //     // name of view
+      //     titleFormat: { year: 'numeric', month: '2-digit', day: '2-digit' },
+      //     // other view-specific options here
+      //   },
+      // },
+      navLinks: false,
+      editable: true,
+      eventLimit: true,
+      events: [], // request to load current events
+      eventRender: function(event, element) {
+        element.attr('title', event.tip)
+      },
+      eventClick: this.eventClick.bind(this),
+    })
   }
   eventClick(calEvent, jsEvent, view) {
     console.log(
       'Event Start =' + require('util').inspect(calEvent.id, false, null)
     )
+    for (var i = 0; i < this.training.events.length; i++) {
+      this.training.events[i].color = this.normalColor
+    }
+    if (calEvent.color == this.normalColor) calEvent.color = this.markColor
+    else if (calEvent.color == this.markColor) calEvent.color = this.normalColor
+    console.log(
+      'this.training=' + require('util').inspect(this.training, false, null)
+    )
+    $('#calendar').fullCalendar('removeEvents', calEvent.id)
+    $('#calendar').fullCalendar('renderEvent', calEvent, 'stick')
+
+    // this.store.dispatch(new TrainingActions.DeleteEvent(calEvent))
+    // for (var i = 0; i < this.training.events.length; i++) {
+    //   if (this.training.events[i].id == calEvent.id) {
+    //     this.training.events[i].color = '#ff9efb'
+    //     $('#calendar').fullCalendar('removeEvents', calEvent.id)
+    //     $('#calendar').fullCalendar(
+    //       'renderEvent',
+    //       this.training.events[i],
+    //       'stick'
+    //     )
+    //   }
+    // }
   }
   submit(value: any) {
+    // console.log('value=' + require('util').inspect(value, false, null))
+    var events = $('#calendar').fullCalendar('clientEvents')
+    console.log(
+      'get events=' + require('util').inspect(events[0].start, false, null)
+    )
+    this.training.events = []
+    for (var i = 0; i < events.length; i++) {
+      var start = new Date(events[i].start._d)
+      var end: Date
+      if (events[i].end != null) {
+        end = new Date(events[i].end._d)
+      }
+      var id: number = events[i].id
+      var number = events[i].number
+      var version = events[i].version
+      this.training.events.push({ id, start, end, number, version })
+    }
+    // console.log(
+    //   'submit this.training.events=' +
+    //     require('util').inspect(this.training.events, false, null)
+    // )
     let tr = { ...this.training, ...value }
     // console.log(
     //   'TrainingAdminAppComponent save submit  =' +
@@ -176,15 +243,44 @@ export class TrainingAdminDetailsComponent implements OnInit {
     )
   }
   addEvent(value: any) {
+    $('#calendar').fullCalendar('removeEvents', 0)
     var newEvent = {
       id: 0,
       title: 'NEW EVENT',
       start: '2001-01-07T08:00:00',
+      end: '2001-01-07T10:00:00',
     }
     $('#calendar').fullCalendar('renderEvent', newEvent, 'stick')
+
+    var events = $('#calendar').fullCalendar('clientEvents')
+    console.log(
+      'get events=' + require('util').inspect(events[0].start, false, null)
+    )
+    // for (var i = 0; i < events.length; i++) {
+    //   if (events[i].id==0) {
+    //   }
+    // }
+    // this.training.events = []
+    // this.store.dispatch(
+    //   // new TrainingActions.SaveTraining({ id: this.training.id, ...value }, this.file)
+    //   new TrainingActions.SaveTraining(this.training, this.file)
+    // )
   }
-  removeEvent(value: any) {
-    $('#calendar').fullCalendar('removeEvents', 0)
+  removeEvents(value: any) {
+    console.log('value=' + require('util').inspect(value, false, null))
+    var events = $('#calendar').fullCalendar('clientEvents')
+    for (var i = 0; i < events.length; i++) {
+      if (events[i].color == this.markColor) {
+        console.log(
+          ' remove events.id=' +
+            require('util').inspect(events[i].id, false, null)
+        )
+        $('#calendar').fullCalendar('removeEvents', events[i].id)
+      }
+      // else this.training.events[i].color = this.normalColor
+    }
+
+    // $('#calendar').fullCalendar('removeEvents', 0)
   }
   private applyFormValues(group, formValues) {
     Object.keys(formValues).forEach(key => {
@@ -203,5 +299,23 @@ export class TrainingAdminDetailsComponent implements OnInit {
       'event.target.files[0]=' +
         require('util').inspect(this.file.name, false, null)
     )
+  }
+
+  setEvents(events: TrEvent[]) {
+    // if (events instanceof Array) {
+    // console.log(
+    //   'Set it now. events=' + require('util').inspect(events, false, null)
+    // )
+    // setTimeout(() => {
+    if (events)
+      for (var i = 0; i < events.length; i++) {
+        events[i].color = this.normalColor
+      }
+
+    $('#calendar').fullCalendar('removeEvents')
+    $('#calendar').fullCalendar('addEventSource', events)
+    $('#calendar').fullCalendar('rerenderEvents')
+    // })
+    // } //End if instance of
   }
 }

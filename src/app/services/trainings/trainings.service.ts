@@ -46,8 +46,8 @@ export class TrainingsService {
           require('util').inspect(trainingImageFile.name, false, null)
       )
     console.log(
-      'training service save. payload=' +
-        require('util').inspect(payload, false, null)
+      'training service save. payload id =' +
+        require('util').inspect(payload.id, false, null)
     )
     let jwtToken = this.cookiesService.get('jwt')
     let headers = new HttpHeaders()

@@ -51,10 +51,15 @@ export function trainingsReducer(
     case actions.LOAD_TRAINING_SUCCESS:
       // state = { ...state, loadingTrainings: false }
       let training = (<actions.LoadTrainingSuccess>action).payload
-      console.log('load training success ' + training.title)
+      // console.log('load training success ' + training.title)
+      // console.log('training=' + require('util').inspect(training, false, null))
       // state = trainingAdapter.removeAll(state)
       // state = trainingAdapter.addOne(training, state)
       return Object.assign({ ...state, selectedTraining: training })
+    // case actions.DELETE_EVENT:
+    //   console.log('delete event ' + (<actions.DeleteEvent>action).payload)
+    //   // state = { ...state, loadingTrainings: true }
+    //   return state
     // return state
     case actions.SAVE_TRAINING:
       // console.log('Save training')
